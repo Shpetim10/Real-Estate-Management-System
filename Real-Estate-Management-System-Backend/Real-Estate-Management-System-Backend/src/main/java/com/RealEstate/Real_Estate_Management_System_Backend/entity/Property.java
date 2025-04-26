@@ -34,7 +34,9 @@ public class Property {
 
     private String status;
 
-    public Property(Long propertyId, String governIssuedId, String address, String city, String country, int bedrooms, int bathrooms, int floor, List<Features> features, PropertyType propertyType, String description, double price, String status) {
+    private String imageUrl;
+
+    public Property(Long propertyId, String governIssuedId, String address, String city, String country, int bedrooms, int bathrooms, int floor, List<Features> features, PropertyType propertyType, String description, double price, String status, String imageUrl) {
         this.propertyId = propertyId;
         this.governIssuedId = governIssuedId;
         this.address = address;
@@ -48,6 +50,7 @@ public class Property {
         this.description = description;
         this.price = price;
         this.status = status;
+        this.imageUrl = imageUrl;
     }
 
     public Property() {
@@ -156,5 +159,13 @@ public class Property {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
