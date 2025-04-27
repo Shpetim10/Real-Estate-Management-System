@@ -1,11 +1,11 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-      <a href="index.html" class="app-brand-link">
+      
         <span class="app-brand-logo demo">
           <i class="bx bx-home"></i>
         </span>
         <span class="app-brand-text demo menu-text fw-bolder ms-2">Horizon Homes</span>
-      </a>
+      
       <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-xl-none">
         <i class="bx bx-chevron-left bx-sm align-middle"></i>
       </a>
@@ -17,7 +17,7 @@
   
       <!-- Dashboard -->
       <li class="menu-item">
-        <a href="index.html" class="menu-link">
+        <a  class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div>Dashboard</div>
         </a>
@@ -25,13 +25,13 @@
   
       <!-- User Management -->
       <li class="menu-item">
-        <a href="add-user.html" class="menu-link">
+        <a routerLink="/add-user" routerLinkActive="router-link-active"  class="menu-link">
           <i class="menu-icon tf-icons bx bx-user"></i>
           <div>Add User</div>
         </a>
       </li>
       <li class="menu-item">
-        <a href="manage-users.html" class="menu-link">
+        <a href="/user-management" class="menu-link">
           <i class="menu-icon tf-icons bx bx-user"></i>
           <div>Manage Users</div>
         </a>
@@ -39,18 +39,17 @@
   
       <!-- Property Management -->
       <li class="menu-item">
-        <a href="add-property.html" class="menu-link">
+        <a routerLink="/add-property" routerLinkActive="router-link-active" class="menu-link">
           <i class="menu-icon tf-icons bx bx-building-house"></i>
           <div>Add Property</div>
         </a>
       </li>
       <li class="menu-item">
-        <a href="manage-property.html" class="menu-link">
+        <a routerLink="/property-management" routerLinkActive="router-link-active"  class="menu-link">
           <i class="menu-icon tf-icons bx bx-building-house"></i>
           <div>Manage Property</div>
         </a>
       </li>
-  
     </ul>
   </aside>
   

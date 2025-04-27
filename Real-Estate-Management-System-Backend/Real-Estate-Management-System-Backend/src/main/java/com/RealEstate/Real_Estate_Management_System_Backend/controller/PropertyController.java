@@ -24,10 +24,9 @@ public class PropertyController {
 
         return new ResponseEntity<>(property,HttpStatus.OK);
     }
-
     @GetMapping("/get-properties")
-    public List<Property> getAllProperties(){
-        return propertyService.getAllProperties();
+    public ResponseEntity<List<Property>> getAllProperties(){
+        return new ResponseEntity<>(propertyService.getAllProperties(),HttpStatus.OK);
     }
 
     @PostMapping("/add-property")

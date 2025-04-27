@@ -33,7 +33,16 @@ export class PropertyServiceService {
     { name: 'FURNISHED', icon: 'bx bx-chair' }, // Chair icon represents furniture
   ];
   
+  findIconNameByFeatureName(feature: string): string | void {
+    const foundFeature = this.features.find(element => element.name === feature);
+    return foundFeature ? foundFeature.icon : undefined;
+  }
+  
   public addProperty(property: Property): Observable<Property>{
     return this.http.post<Property>(this.apiServerUrl+'/add-property',property);
+  }
+  
+  public getAllProperties(){
+    return this.http.get<Property[]>(this.apiServerUrl+"/get-properties");
   }
 }

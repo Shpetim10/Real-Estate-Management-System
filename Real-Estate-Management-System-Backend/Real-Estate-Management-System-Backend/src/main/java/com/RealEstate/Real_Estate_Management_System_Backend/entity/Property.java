@@ -22,7 +22,7 @@ public class Property {
 
     private int bedrooms;
     private int bathrooms;
-
+    private int area;
     private int floor;
 
     @ElementCollection
@@ -37,7 +37,7 @@ public class Property {
 
     private String imageUrl;
 
-    public Property(Long propertyId, String governIssuedId, String address, String city, String country, int bedrooms, int bathrooms, int floor, List<Features> features, PropertyType propertyType, String description, double price, PropertyStatus status, String imageUrl) {
+    public Property(Long propertyId, String governIssuedId, String address, String city, String country, int bedrooms, int bathrooms, int area, int floor, List<Features> features, PropertyType propertyType, String description, double price, PropertyStatus status, String imageUrl) {
         this.propertyId = propertyId;
         this.governIssuedId = governIssuedId;
         this.address = address;
@@ -45,6 +45,7 @@ public class Property {
         this.country = country;
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;
+        this.area=area;
         this.floor = floor;
         this.features = features;
         this.propertyType = propertyType;
@@ -168,5 +169,13 @@ public class Property {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public int getArea() {
+        return area;
+    }
+
+    public void setArea(int area) {
+        this.area = area;
     }
 }
