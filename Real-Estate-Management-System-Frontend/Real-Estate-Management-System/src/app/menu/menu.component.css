@@ -1,0 +1,29 @@
+/* Make sure the menu fills the entire height */
+.layout-menu {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* Ensure menu items are properly spaced */
+.menu-inner {
+    flex-grow: 1;
+}
+
+.menu-item {
+    padding: 10px;
+}
+
+/* Optional: Fix width for consistency */
+.layout-menu.menu-vertical {
+    width: 280px;
+    background-color: var(--bg-menu-theme);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .layout-menu {
+        width: 100%;
+    }
+}
