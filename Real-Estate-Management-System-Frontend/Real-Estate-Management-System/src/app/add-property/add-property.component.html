@@ -1,10 +1,10 @@
 <div class="card mb-4">
     <div class="card-header d-flex justify-content-between align-items-center">
-      <h5 class="mb-0">Add New Property</h5>
-      <small class="text-muted float-end">Property Information</small>
+      <h5 class="mb-0"><i class="bx bx-home"></i>Add New Property</h5>
+      <small class="text-muted float-end"><i class="bx bx-paper-plane"></i>Property Information</small>
     </div>
     <div class="card-body">
-      <form>
+      <form #propertyForm="ngForm">
   
         <!-- First Row: Govern Issued ID + Status -->
         <div class="row">
@@ -12,14 +12,17 @@
             <label class="form-label" for="governIssuedId">Government Issued ID</label>
             <div class="input-group input-group-merge">
               <span id="governIssuedId2" class="input-group-text"><i class="bx bx-id-card"></i></span>
-              <input type="text" id="governIssuedId" class="form-control" placeholder="Enter ID" aria-describedby="governIssuedId2">
+              <input type="text" id="governIssuedId" class="form-control" placeholder="Enter ID" aria-describedby="governIssuedId2" name="governIssuedId" ngModel>
             </div>
           </div>
           <div class="mb-3 col-md-6">
             <label class="form-label" for="status">Status</label>
             <div class="input-group input-group-merge">
               <span id="status2" class="input-group-text"><i class="bx bx-info-circle"></i></span>
-              <input type="text" id="status" class="form-control" placeholder="Available, Sold, etc." aria-describedby="status2">
+              <select name="status" id="status" class="form-select" name="status" ngModel>
+                <option value="" selected disabled>Select property satatus...</option>
+                <option *ngFor="let status of propertyService.propertyStatus" [value]="status" aria-describedby="status2">{{status}}</option>
+              </select>
             </div>
           </div>
         </div>
@@ -29,7 +32,7 @@
           <label class="form-label" for="address">Address</label>
           <div class="input-group input-group-merge">
             <span id="address2" class="input-group-text"><i class="bx bx-map"></i></span>
-            <input type="text" id="address" class="form-control" placeholder="123 Main St" aria-describedby="address2">
+            <input type="text" id="address" class="form-control" placeholder="123 Main St" aria-describedby="address2" name="address" ngModel>
           </div>
         </div>
   
@@ -39,14 +42,14 @@
             <label class="form-label" for="city">City</label>
             <div class="input-group input-group-merge">
               <span id="city2" class="input-group-text"><i class="bx bx-building"></i></span>
-              <input type="text" id="city" class="form-control" placeholder="City Name" aria-describedby="city2">
+              <input type="text" id="city" class="form-control" placeholder="City Name" aria-describedby="city2" name="city" ngModel>
             </div>
           </div>
           <div class="mb-3 col-md-6">
             <label class="form-label" for="country">Country</label>
             <div class="input-group input-group-merge">
               <span id="country2" class="input-group-text"><i class="bx bx-globe"></i></span>
-              <input type="text" id="country" class="form-control" placeholder="Country Name" aria-describedby="country2">
+              <input type="text" id="country" class="form-control" placeholder="Country Name" aria-describedby="country2" name="country" ngModel>
             </div>
           </div>
         </div>
@@ -57,21 +60,21 @@
             <label class="form-label" for="bedrooms">Bedrooms</label>
             <div class="input-group input-group-merge">
               <span id="bedrooms2" class="input-group-text"><i class="bx bx-bed"></i></span>
-              <input type="number" id="bedrooms" class="form-control" placeholder="Bedrooms" aria-describedby="bedrooms2">
+              <input type="number" id="bedrooms" class="form-control" placeholder="Bedrooms" aria-describedby="bedrooms2" name="bedrooms" ngModel>
             </div>
           </div>
           <div class="mb-3 col-md-4">
             <label class="form-label" for="bathrooms">Bathrooms</label>
             <div class="input-group input-group-merge">
               <span id="bathrooms2" class="input-group-text"><i class="bx bx-bath"></i></span>
-              <input type="number" id="bathrooms" class="form-control" placeholder="Bathrooms" aria-describedby="bathrooms2">
+              <input type="number" id="bathrooms" class="form-control" placeholder="Bathrooms" aria-describedby="bathrooms2" name="bathrooms" ngModel>
             </div>
           </div>
           <div class="mb-3 col-md-4">
             <label class="form-label" for="floor">Floor</label>
             <div class="input-group input-group-merge">
               <span id="floor2" class="input-group-text"><i class="bx bx-building-house"></i></span>
-              <input type="number" id="floor" class="form-control" placeholder="Floor Number" aria-describedby="floor2">
+              <input type="number" id="floor" class="form-control" placeholder="Floor Number" aria-describedby="floor2" name="floor" ngModel>
             </div>
           </div>
         </div>
@@ -82,14 +85,17 @@
             <label class="form-label" for="propertyType">Property Type</label>
             <div class="input-group input-group-merge">
               <span id="propertyType2" class="input-group-text"><i class="bx bx-home-circle"></i></span>
-              <input type="text" id="propertyType" class="form-control" placeholder="Apartment, Villa, etc." aria-describedby="propertyType2">
+              <select name="propertyType" id="propertyType" class="form-select" name="propertyType" ngModel>
+                <option value="" disabled selected>Select property type...</option>
+                <option *ngFor="let type of propertyService.propertyType" [value]="type" aria-describedby="propertyType2">{{type}}</option>
+              </select>
             </div>
           </div>
           <div class="mb-3 col-md-6">
             <label class="form-label" for="price">Price</label>
             <div class="input-group input-group-merge">
               <span id="price2" class="input-group-text"><i class="bx bx-dollar"></i></span>
-              <input type="number" id="price" class="form-control" placeholder="Enter Price" step="0.01" aria-describedby="price2">
+              <input type="number" id="price" class="form-control" placeholder="Enter Price" step="0.01" aria-describedby="price2" name="price" ngModel>
             </div>
           </div>
         </div>
@@ -99,9 +105,12 @@
           <label class="form-label" for="features">Features</label>
           <div class="input-group input-group-merge">
             <span id="features2" class="input-group-text"><i class="bx bx-list-ul"></i></span>
-            <input type="text" id="features" class="form-control" placeholder="Feature1, Feature2" aria-describedby="features2">
+            <select name="features" id="features" multiple name="features" ngModel>
+              <option value="" disabled>Select property features...</option>
+              <option *ngFor="let feature of propertyService.features" [value]="feature.name"><i [class]="feature.icon"></i>{{feature.name}}</option>
+            </select>
           </div>
-          <div class="form-text">Separate multiple features with commas</div>
+          <div class="form-text">Multiple features can be selected</div>
         </div>
   
         <!-- Seventh Row: Image URL -->
@@ -109,7 +118,7 @@
           <label class="form-label" for="imageUrl">Image URL</label>
           <div class="input-group input-group-merge">
             <span id="imageUrl2" class="input-group-text"><i class="bx bx-image"></i></span>
-            <input type="text" id="imageUrl" class="form-control" placeholder="http://example.com/image.jpg" aria-describedby="imageUrl2">
+            <input type="text" id="imageUrl" class="form-control" placeholder="http://example.com/image.jpg" aria-describedby="imageUrl2" name="imageUrl" ngModel>
           </div>
         </div>
   
@@ -118,12 +127,12 @@
           <label class="form-label" for="description">Description</label>
           <div class="input-group input-group-merge">
             <span id="description2" class="input-group-text"><i class="bx bx-detail"></i></span>
-            <textarea id="description" class="form-control" placeholder="Property description..." aria-describedby="description2"></textarea>
+            <textarea id="description" class="form-control" placeholder="Property description..." aria-describedby="description2" name="description" ngModel></textarea>
           </div>
         </div>
   
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary">Save Property</button>
+        <button type="submit" class="btn btn-primary" (click)="addProperty(propertyForm)">Save Property</button>
   
       </form>
     </div>

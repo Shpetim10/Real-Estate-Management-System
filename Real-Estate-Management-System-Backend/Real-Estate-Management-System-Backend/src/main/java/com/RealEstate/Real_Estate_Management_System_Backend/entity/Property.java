@@ -1,6 +1,7 @@
 package com.RealEstate.Real_Estate_Management_System_Backend.entity;
 
 import com.RealEstate.Real_Estate_Management_System_Backend.enums.Features;
+import com.RealEstate.Real_Estate_Management_System_Backend.enums.PropertyStatus;
 import com.RealEstate.Real_Estate_Management_System_Backend.enums.PropertyType;
 import jakarta.persistence.*;
 
@@ -32,11 +33,11 @@ public class Property {
 
     private double price;
 
-    private String status;
+    private PropertyStatus status;
 
     private String imageUrl;
 
-    public Property(Long propertyId, String governIssuedId, String address, String city, String country, int bedrooms, int bathrooms, int floor, List<Features> features, PropertyType propertyType, String description, double price, String status, String imageUrl) {
+    public Property(Long propertyId, String governIssuedId, String address, String city, String country, int bedrooms, int bathrooms, int floor, List<Features> features, PropertyType propertyType, String description, double price, PropertyStatus status, String imageUrl) {
         this.propertyId = propertyId;
         this.governIssuedId = governIssuedId;
         this.address = address;
@@ -153,11 +154,11 @@ public class Property {
         this.price = price;
     }
 
-    public String getStatus() {
+    public PropertyStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(PropertyStatus status) {
         this.status = status;
     }
 
