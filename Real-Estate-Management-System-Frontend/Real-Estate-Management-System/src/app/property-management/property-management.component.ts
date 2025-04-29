@@ -5,6 +5,10 @@ import { PropertyServiceService } from '../Services/property-service.service';
 import { Property } from '../Entities/Property';
 import { response } from 'express';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { DeletePropertyDialogComponent } from '../delete-property-dialog/delete-property-dialog.component';
+import { ViewPropertyDialogComponent } from '../view-property-dialog/view-property-dialog.component';
+import { EditPropertyComponent } from '../edit-property/edit-property.component';
 @Component({
   selector: 'app-property-management',
   imports: [MenuComponent,CommonModule],
@@ -12,7 +16,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './property-management.component.css'
 })
 export class PropertyManagementComponent {
-  constructor(public propertyService: PropertyServiceService){}
+  constructor(public propertyService: PropertyServiceService, private dialog: MatDialog){}
   properties: Property[]=[];
   
   ngOnInit(){
@@ -25,4 +29,53 @@ export class PropertyManagementComponent {
       error: (error)=> alert("Error fetching properties!")
     });
   }
+  
+  deleteProperty(propertyId: number){
+    const dialogRef=this.dialog.open(DeletePropertyDialogComponent,{
+      height: '250px',
+      data: {
+        propertyId: propertyId
+      }
+    });
+    
+    dialogRef.afterClosed().subscribe((response)=>{
+      if(response){
+        this.propertyService.deleteProperty(propertyId).subscribe({
+          next: (response)=> this.properties=this.properties.filter(property=> propertyId!==property.propertyId),
+          error: (error)=> console.log("There was an error during deleting property! ")
+        });
+      }
+    })
+  }
+  
+  viewProperty(property: Property){
+    this.dialog.open(ViewPropertyDialogComponent,{
+      width: '550px',
+      data: {
+        property: property
+      }
+    })
+  }
+  
+  updateProperty(oldProperty: Property){
+    let toEdit: Property=JSON.parse(JSON.stringify(oldProperty));
+    
+    const dialog=this.dialog.open(EditPropertyComponent,{
+      width: '550px',
+      data: {
+        property: oldProperty
+      }
+    })
+    
+    dialog.afterClosed().subscribe((response)=>
+      {
+        if(response!==null){
+          this.propertyService.updateProperty(toEdit,response).subscribe({
+            next: (response)=>this.getAllProperties(),
+            error: (error)=> console.error(error)
+          }); 
+        }
+      }
+    )
+  } 
 }

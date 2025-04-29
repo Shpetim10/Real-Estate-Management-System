@@ -34,7 +34,7 @@
                                                     <div class="box-content">
                                                         <h3 class="title">Property-{{property.governIssuedId}}</h3>
                                                         <ul class="icon" >
-                                                            <li style="text-align: center;"><a><i class="bx bx-show"></i></a></li>
+                                                            <li style="text-align: center;"><a (click)="viewProperty(property)"><i class="bx bx-show"></i></a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -44,7 +44,7 @@
                                         <!-- Property Details -->
                                         <div class="col-md-6">
                                             <div class="room-des">
-                                                <h3><a  class="a:hover">Property Id--{{property.governIssuedId}}<br/>{{property.propertyType}}</a></h3>
+                                                <h3><a (click)="viewProperty(property)" class="a:hover">Property Id--{{property.governIssuedId}}<br/>Type -- {{property.propertyType}}</a></h3>
                                                 <p>{{property.description}}</p>
                                                 <ul class="room-size" type="none" >
                                                     <li><i class="bx bx-arrow-to-right"></i> Area: {{property.area}} sq ft</li>
@@ -67,8 +67,8 @@
                                                 <h2>${{property.price}}</h2>
                                                 <ul class="room-icon" type="none">
                                                     <h6>Actions<br></h6>
-                                                    <li><button type="button" class="btn btn-square btn-outline-primary m-1" ><i class="bx bx-pen"></i></button></li>
-                                                    <li><button type="button" class="btn btn-square btn-outline-primary m-1" ><i class="bx bx-trash"></i></button></li>
+                                                    <li><button type="button" class="btn btn-square btn-outline-primary m-1" (click)="updateProperty(property)" ><i class="bx bx-pen"></i></button></li>
+                                                    <li><button type="button" class="btn btn-square btn-outline-primary m-1"  (click)="deleteProperty(property.propertyId)"><i class="bx bx-trash"></i></button></li>
                                                 </ul>
                                             </div>
                                         </div>

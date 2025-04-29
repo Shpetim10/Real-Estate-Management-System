@@ -24,14 +24,14 @@ export class PropertyServiceService {
   ];
   
   features: { name: string, icon: string }[] = [
-    { name: 'KITCHEN', icon: 'bx bx-bowl-hot' }, // Represents cooking or kitchenware
-    { name: 'LIVING_ROOM', icon: 'bx bx-sofa' }, // A sofa icon fits well for a living space
+    { name: 'KITCHEN', icon: 'bx bx-restaurant' }, // Represents cooking or kitchenware
+    { name: 'LIVING_ROOM', icon: 'bx bx-tv' }, // A TV icon fits well for a living space
     { name: 'AIR_CONDITIONER', icon: 'bx bx-wind' }, // Wind symbol represents air circulation
-    { name: 'BALCONY', icon: 'bx bx-home' }, // Home icon can symbolize an outdoor extension
-    { name: 'STORAGE_SPACE', icon: 'bx bx-box' }, // Box icon represents storage
-    { name: 'GARAGE', icon: 'bx bx-car' }, // Car icon fits a garage setting
-    { name: 'FURNISHED', icon: 'bx bx-chair' }, // Chair icon represents furniture
-  ];
+    { name: 'BALCONY', icon: 'bx bx-landscape' }, // Symbolizes an outdoor extension
+    { name: 'STORAGE_SPACE', icon: 'bx bx-package' }, // Represents storage better than a box
+    { name: 'GARAGE', icon: 'bx bx-garage' }, // Specifically for garage space
+    { name: 'FURNISHED', icon: 'bx bx-chair' }, // Represents furniture properly
+];
   
   findIconNameByFeatureName(feature: string): string | void {
     const foundFeature = this.features.find(element => element.name === feature);
@@ -44,5 +44,13 @@ export class PropertyServiceService {
   
   public getAllProperties(){
     return this.http.get<Property[]>(this.apiServerUrl+"/get-properties");
+  }
+  
+  public deleteProperty(propertyId: number){
+    return this.http.delete<Property>(this.apiServerUrl+"/delete-property/"+propertyId);
+  }
+  
+  public updateProperty(oldProperty: Property, updatedPropety: Property){
+    return this.http.put<Property>(this.apiServerUrl+"/update-property/"+oldProperty.propertyId,updatedPropety);
   }
 }

@@ -1,5 +1,5 @@
 export class Property {
-    propertyId?: number; // Optional since ID is auto-generated
+    propertyId: number; // Optional since ID is auto-generated
     governIssuedId: string;
     address: string;
     city: string;
@@ -30,7 +30,7 @@ export class Property {
         price: number,
         status: string,
         imageUrl: string,
-        propertyId?: number // Optional parameter
+        propertyId: number // Optional parameter
     ) {
         this.propertyId = propertyId;
         this.governIssuedId = governIssuedId;

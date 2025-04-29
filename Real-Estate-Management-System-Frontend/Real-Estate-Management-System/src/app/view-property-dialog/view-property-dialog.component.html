@@ -1,0 +1,93 @@
+<mat-dialog-content class="dialog-content" style="background-color: var(--bs-gray-dark); color: var(--bs-white);">
+  <div class="container py-3">
+      <div class="card-header d-flex justify-content-between align-items-center mb-4">
+          <h1 class="mb-0" style="color: var(--bs-primary);">
+              <i class="bx bx-home"></i> Property Details
+          </h1>
+      </div>
+
+      <div class="row mb-3">
+          <div class="col-md-6">
+              <strong><i class="bx bx-hash"></i> Property ID:</strong>
+              <p style="color: var(--bs-light);">{{ data.property.propertyId }}</p>
+          </div>
+          <div class="col-md-6">
+              <strong><i class="bx bx-id-card"></i> Government Issued ID:</strong>
+              <p style="color: var(--bs-light);">{{ data.property.governIssuedId }}</p>
+          </div>
+      </div>
+
+      <div class="row mb-3">
+          <div class="col-md-6">
+              <strong><i class="bx bx-building-house"></i> Property Type:</strong>
+              <p style="color: var(--bs-white);">{{ data.property.propertyType }}</p>
+          </div>
+          <div class="col-md-6">
+              <strong><i class="bx bx-current-location"></i> Address:</strong>
+              <p style="color: var(--bs-light);">{{ data.property.address }}, {{ data.property.city }}, {{ data.property.country }}</p>
+          </div>
+      </div>
+
+      <div class="row mb-3">
+          <div class="col-md-6">
+              <strong><i class="bx bx-bed"></i> Bedrooms:</strong>
+              <p style="color: var(--bs-white);">{{ data.property.bedrooms }}</p>
+          </div>
+          <div class="col-md-6">
+              <strong><i class="bx bx-bath"></i> Bathrooms:</strong>
+              <p style="color: var(--bs-light);">{{ data.property.bathrooms }}</p>
+          </div>
+      </div>
+
+      <div class="row mb-3">
+          <div class="col-md-6">
+              <strong><i class="bx bx-fullscreen"></i> Area:</strong>
+              <p style="color: var(--bs-light);">{{ data.property.area }} sq ft</p>
+          </div>
+          <div class="col-md-6">
+              <strong><i class="bx bx-building"></i> Floor:</strong>
+              <p style="color: var(--bs-white);">{{ data.property.floor }}</p>
+          </div>
+      </div>
+
+      <div class="row mb-3">
+          <div class="col-md-6">
+              <strong><i class="bx bx-dollar"></i> Price:</strong>
+              <p style="color: var(--bs-white);">${{ data.property.price }}</p>
+          </div>
+          <div class="col-md-6">
+              <strong><i class="bx bx-badge-check"></i> Status:</strong>
+              <p style="color: var(--bs-light);">{{ data.property.status }}</p>
+          </div>
+      </div>
+
+      <div class="row mb-3 text-center">
+          <div class="col-md-12">
+              <strong><i class="bx bx-image"></i> Property Image:</strong><br>
+              <img [src]="data.property.imageUrl" alt="Property Image" class="img-fluid rounded mt-2 border"
+                   style="max-height: 200px; box-shadow: 0px 0px 10px 3px var(--bs-gray-dark);">
+          </div>
+      </div>
+
+      <div class="mb-3">
+          <strong><i class="bx bx-file"></i> Description:</strong>
+          <p style="color: var(--bs-white);">{{ data.property.description }}</p>
+      </div>
+
+      <div class="mb-3">
+          <strong><i class="bx bx-star"></i> Features:</strong>
+          <ul class="list-group list-group-flush" *ngIf="data?.property?.features && data.property.features.length > 0">
+              <li class="list-group-item bg-transparent text-white d-flex align-items-center gap-2"
+                  *ngFor="let feature of data.property.features"
+                  [class]="propertyService.findIconNameByFeatureName(feature)">
+                  {{ feature }}
+              </li>
+          </ul>
+          <p *ngIf="data.property.features?.length === 0" style="color: var(--bs-gray);">No features listed.</p>
+      </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-footer justify-content-end" style="background-color: var(--bs-gray-dark);">
+  <button mat-button class="btn btn-secondary" style="background-color: var(--bs-dark); color: var(--bs-white);" (click)="onClose()">Close</button>
+</mat-dialog-actions>
