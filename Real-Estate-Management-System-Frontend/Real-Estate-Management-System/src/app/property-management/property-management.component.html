@@ -1,0 +1,86 @@
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+        <!-- Navbar/Menu Component -->
+        <app-menu></app-menu>
+
+        <div class="layout-page">
+            <!-- Content Wrapper -->
+            <div class="content-wrapper">
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <!-- Property Management Card -->
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0"><i class="bx bx-home"></i> Manage Properties</h5>
+                            <small class="text-muted float-end"><i class="bx bx-paper-plane"></i> Property Management</small>
+                        </div>
+                        <div class="card-body">
+                            <!-- Alert Message when No Properties Exist -->
+                            <div class="alert alert-danger text-center" role="alert" *ngIf="this.properties.length == 0">
+                                <h2><i class="fas fa-folder-open"></i> There are no properties registered yet!</h2>
+                            </div>
+
+                            <!-- List of Properties -->
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h1 class="mb-0"><i class="bx bx-home" style="text-align: center;"></i> My Properties</h1>
+                            </div>
+                            <div class="row" *ngFor="let property of properties; let i = index">
+                                <div class="col-md-12">
+                                    <div class="row" style="box-shadow: 0px 0px 10px 5px #ad7ef7; padding: 15px;">
+                                        <!-- Property Image -->
+                                        <div class="col-md-3">
+                                            <div class="room-img">
+                                                <div class="box12">
+                                                    <img [src]="property.imageUrl" alt="Property Image" class="img-fluid">
+                                                    <div class="box-content">
+                                                        <h3 class="title">Property-{{property.governIssuedId}}</h3>
+                                                        <ul class="icon" >
+                                                            <li style="text-align: center;"><a (click)="viewProperty(property)"><i class="bx bx-show"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Property Details -->
+                                        <div class="col-md-6">
+                                            <div class="room-des">
+                                                <h3><a (click)="viewProperty(property)" class="a:hover">Property Id--{{property.governIssuedId}}<br/>Type -- {{property.propertyType}}</a></h3>
+                                                <p>{{property.description}}</p>
+                                                <ul class="room-size" type="none" >
+                                                    <li><i class="bx bx-arrow-to-right"></i> Area: {{property.area}} sq ft</li>
+                                                    <li><i class="bx bx-arrow-to-right"></i> Bedrooms: {{property.bedrooms}}</li>
+                                                    <li><i class="bx bx-arrow-to-right"></i> Bathrooms: {{property.bathrooms}}</li>
+                                                    <li><i class="bx bx-arrow-to-right"></i> Floor: {{property.floor}}</li>
+                                                </ul>
+                                                
+                                                <h6>Features</h6>
+                                                <ul class="room-icon" style="text-align: center;">
+                                                    <li *ngFor="let feature of property.features" [class]="propertyService.findIconNameByFeatureName(feature)"></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <!-- Property Pricing and Actions -->
+                                        <div class="col-md-3">
+                                            <div class="room-rate">
+                                                <h3>Price</h3>
+                                                <h2>${{property.price}}</h2>
+                                                <ul class="room-icon" type="none">
+                                                    <h6>Actions<br></h6>
+                                                    <li><button type="button" class="btn btn-square btn-outline-primary m-1" (click)="updateProperty(property)" ><i class="bx bx-pen"></i></button></li>
+                                                    <li><button type="button" class="btn btn-square btn-outline-primary m-1"  (click)="deleteProperty(property.propertyId)"><i class="bx bx-trash"></i></button></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <!-- End of Property List -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
