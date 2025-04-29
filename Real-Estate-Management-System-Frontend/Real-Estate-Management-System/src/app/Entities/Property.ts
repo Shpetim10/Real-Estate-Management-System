@@ -1,5 +1,5 @@
 export class Property {
-    propertyId?: number; // Optional since ID is auto-generated
+    propertyId: number; // Optional since ID is auto-generated
     governIssuedId: string;
     address: string;
     city: string;
@@ -7,6 +7,7 @@ export class Property {
     bedrooms: number;
     bathrooms: number;
     floor: number;
+    area: number;
     features: string[]; // Assuming Features is another interface
     propertyType: string; // Assuming PropertyType is an enum or type
     description: string;
@@ -22,13 +23,14 @@ export class Property {
         bedrooms: number,
         bathrooms: number,
         floor: number,
+        area: number,
         features: string[],
         propertyType: string,
         description: string,
         price: number,
         status: string,
         imageUrl: string,
-        propertyId?: number // Optional parameter
+        propertyId: number // Optional parameter
     ) {
         this.propertyId = propertyId;
         this.governIssuedId = governIssuedId;
@@ -38,6 +40,7 @@ export class Property {
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;
         this.floor = floor;
+        this.area=area;
         this.features = features;
         this.propertyType = propertyType;
         this.description = description;

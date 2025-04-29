@@ -1,0 +1,8 @@
+ul {
+    display: flex; /* Aligns list items horizontally */
+    list-style: none; /* Removes default bullets */
+    padding: 0;
+    text-align: center; /* Ensures text inside aligns properly */
+    justify-content: space-between; /* Distributes items evenly */
+    width: 100%; /* Ensures full container width */
+}
