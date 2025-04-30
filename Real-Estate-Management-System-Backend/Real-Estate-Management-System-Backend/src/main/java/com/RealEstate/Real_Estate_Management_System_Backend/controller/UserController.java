@@ -51,6 +51,18 @@ public class UserController {
         userService.updateUser(id, updatedUser);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
+
+    @GetMapping("/view-user/{username}")
+    public ResponseEntity<User> viewUser(@PathVariable String username) {
+        User user = userService.findByUsername(username);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @PutMapping("/edit-user/{id}")
+    public ResponseEntity<User> editUser(@PathVariable long id, @RequestBody User updatedUser) {
+        userService.updateUser(id, updatedUser);
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
 }
 
 
