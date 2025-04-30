@@ -1,71 +1,100 @@
-<div class="d-flex">
-  <!-- Main Content -->
-  <div class="content flex-grow-1">
-    <!-- Navbar Component -->
-    <!--<app-menu></app-menu> -->
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <!-- Sidebar/Menu -->
+      <app-menu></app-menu>
   
-    <!-- Add User Start -->
-    <div class="container-fluid p-4">
-      <div class="bg-secondary rounded p-4">
-        <h3 class="mb-4 text-primary">
-          <i class="fa fa-user-plus me-2"></i> User Registration
-        </h3>
-        
-        <!-- Using [formGroup] instead of template-driven form approach -->
-        <form #addUserForm="ngForm">
-          <div class="custom-horizontal-flex">
-            <div class="mb-3">
-              <label for="firstName" class="form-label">First Name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="Enter first name..." formControlName="firstName">
-            </div>
+      <!-- Layout Page Content -->
+      <div class="layout-page">
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+          <!-- Content -->
+          <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="card mb-4">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="bx bx-user"></i> Register New User</h5>
+                <small class="text-muted float-end"><i class="bx bx-user-circle"></i> User Information</small>
+              </div>
+              <div class="card-body">
+                <form #userForm="ngForm">
+                  <!-- First Row: Name + Surname -->
+                  <div class="row">
+                    <div class="mb-3 col-md-6">
+                      <label class="form-label" for="name">Name</label>
+                      <div class="input-group input-group-merge">
+                        <span class="input-group-text"><i class="bx bx-user"></i></span>
+                        <input type="text" id="name" class="form-control" placeholder="Enter name" name="name" ngModel>
+                      </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                      <label class="form-label" for="surname">Surname</label>
+                      <div class="input-group input-group-merge">
+                        <span class="input-group-text"><i class="bx bx-user-circle"></i></span>
+                        <input type="text" id="surname" class="form-control" placeholder="Enter surname" name="surname" ngModel>
+                      </div>
+                    </div>
+                  </div>
   
-            <div class="mb-3">
-              <label for="lastName" class="form-label">Last Name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="Enter last name..." formControlName="lastName">
-            </div>
+                  <!-- Second Row: Username + Password -->
+                  <div class="row">
+                    <div class="mb-3 col-md-6">
+                      <label class="form-label" for="username">Username</label>
+                      <div class="input-group input-group-merge">
+                        <span class="input-group-text"><i class="bx bx-user-check"></i></span>
+                        <input type="text" id="username" class="form-control" placeholder="Enter username" name="username" ngModel>
+                      </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                      <label class="form-label" for="password">Password</label>
+                      <div class="input-group input-group-merge">
+                        <span class="input-group-text"><i class="bx bx-lock"></i></span>
+                        <input type="password" id="password" class="form-control" placeholder="Enter password" name="password" ngModel>
+                      </div>
+                    </div>
+                  </div>
   
-            <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
-              <input type="text" class="form-control" id="username" placeholder="Enter username..." formControlName="username">
-            </div>
+                  <!-- Third Row: Email + Phone -->
+                  <div class="row">
+                    <div class="mb-3 col-md-6">
+                      <label class="form-label" for="email">Email</label>
+                      <div class="input-group input-group-merge">
+                        <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                        <input type="email" id="email" class="form-control" placeholder="Enter email" name="email" ngModel>
+                      </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                      <label class="form-label" for="phone">Phone</label>
+                      <div class="input-group input-group-merge">
+                        <span class="input-group-text"><i class="bx bx-phone"></i></span>
+                        <input type="text" id="phone" class="form-control" placeholder="Enter phone number" name="phone" ngModel>
+                      </div>
+                    </div>
+                  </div>
   
-            <div class="mb-3">
-              <label for="phoneNumber" class="form-label">Phone Number</label>
-              <input type="text" class="form-control" id="phoneNumber" placeholder="Enter phone number..." formControlName="phoneNumber">
+                  <!-- Fourth Row: Roles -->
+                  <div class="mb-3">
+                    <label class="form-label" for="roles">Roles</label>
+                    <div class="input-group input-group-merge">
+                      <span class="input-group-text"><i class="bx bx-list-check"></i></span>
+                      <select id="roles" class="form-select" multiple name="roles" ngModel>
+                        <option *ngFor="let role of userService.roles" [value]="role">{{role}}</option>
+                      </select>
+                    </div>
+                    <div class="form-text">Multiple roles can be selected</div>
+                  </div>
+  
+                  <!-- Submit Button -->
+                  <div class="text-end">
+                    <button type="submit" class="btn btn-primary" (click)="addUser(userForm)">Register User</button>
+                  </div>
+  
+                </form>
+              </div>
             </div>
           </div>
-  
-          <div class="custom-horizontal-flex">
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="Enter email..." formControlName="email">
-            </div>
-  
-            <div class="mb-3">
-              <label for="photoUrl" class="form-label">Photo URL</label>
-              <input type="text" class="form-control" id="photoUrl" placeholder="Enter photo URL..." formControlName="photoUrl">
-            </div>
-  
-            <div class="form-floating mb-3">
-              <select class="form-select" id="role" formControlName="role">
-                <option value="" disabled>Select role...</option>
-                <option *ngFor="let r of userService.userRoles" [value]="r">{{ r }}</option>
-              </select>
-              <label for="role">User Role</label>
-            </div>
-          </div>
-  
-          <div class="custom-horizontal-flex">
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Enter password..." formControlName="encryptedPassword">
-            </div>
-          </div>
-          
-          <!-- Submit Button -->
-          <button type="submit" class="btn btn-primary" [disabled]="addUserForm.invalid" (click)="addUser(addUserForm)">Add User</button>
-        </form>
+          <!-- / Content -->
+        </div>
+        <!-- / Content Wrapper -->
       </div>
+      <!-- / Layout Page -->
     </div>
   </div>
-</div>

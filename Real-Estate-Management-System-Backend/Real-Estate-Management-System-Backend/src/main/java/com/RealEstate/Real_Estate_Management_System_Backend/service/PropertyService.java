@@ -57,6 +57,9 @@ public class PropertyService {
         property.setPrice(updatedProperty.getPrice());
         property.setPropertyType(updatedProperty.getPropertyType());
         property.setDescription(updatedProperty.getDescription());
+        property.setGovernIssuedId(updatedProperty.getGovernIssuedId());
+        property.setImageUrl(updatedProperty.getImageUrl());
+        property.setArea(updatedProperty.getArea());
 
         propertyRepository.save(property);
     }

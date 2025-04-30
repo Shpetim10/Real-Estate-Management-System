@@ -28,12 +28,14 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
+    @OneToMany
+    private List<Property> properties;
 
     public User() {
 
     }
 
-    public User(Long id, String name, String surname, String username, String password, String email, String phone) {
+    public User(Long id, String name, String surname, String username, String password, String email, String phone, List<String> roles, List<Property> properties) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -41,6 +43,8 @@ public class User {
         this.password = password;
         this.email = email;
         this.phone = phone;
+        this.roles = roles;
+        this.properties = properties;
     }
 
     public Long getId() {
@@ -107,18 +111,12 @@ public class User {
         this.roles = roles;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", roles=" + roles +
-                '}';
+    public List<Property> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(List<Property> properties) {
+        this.properties = properties;
     }
 
     public void addRole(String role) {

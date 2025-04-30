@@ -1,6 +1,7 @@
 package com.RealEstate.Real_Estate_Management_System_Backend.entity;
 
 import com.RealEstate.Real_Estate_Management_System_Backend.enums.Features;
+import com.RealEstate.Real_Estate_Management_System_Backend.enums.PropertyStatus;
 import com.RealEstate.Real_Estate_Management_System_Backend.enums.PropertyType;
 import jakarta.persistence.*;
 
@@ -21,7 +22,7 @@ public class Property {
 
     private int bedrooms;
     private int bathrooms;
-
+    private int area;
     private int floor;
 
     @ElementCollection
@@ -32,11 +33,14 @@ public class Property {
 
     private double price;
 
-    private String status;
+    private PropertyStatus status;
 
     private String imageUrl;
 
-    public Property(Long propertyId, String governIssuedId, String address, String city, String country, int bedrooms, int bathrooms, int floor, List<Features> features, PropertyType propertyType, String description, double price, String status, String imageUrl) {
+    @ManyToOne
+    private User agent;
+
+    public Property(Long propertyId, String governIssuedId, String address, String city, String country, int bedrooms, int bathrooms, int area, int floor, List<Features> features, PropertyType propertyType, String description, double price, PropertyStatus status, String imageUrl, User agent) {
         this.propertyId = propertyId;
         this.governIssuedId = governIssuedId;
         this.address = address;
@@ -44,6 +48,7 @@ public class Property {
         this.country = country;
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;
+        this.area = area;
         this.floor = floor;
         this.features = features;
         this.propertyType = propertyType;
@@ -51,6 +56,7 @@ public class Property {
         this.price = price;
         this.status = status;
         this.imageUrl = imageUrl;
+        this.agent = agent;
     }
 
     public Property() {
@@ -153,11 +159,11 @@ public class Property {
         this.price = price;
     }
 
-    public String getStatus() {
+    public PropertyStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(PropertyStatus status) {
         this.status = status;
     }
 
@@ -167,5 +173,21 @@ public class Property {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public int getArea() {
+        return area;
+    }
+
+    public void setArea(int area) {
+        this.area = area;
+    }
+
+    public User getAgent() {
+        return agent;
+    }
+
+    public void setAgent(User agent) {
+        this.agent = agent;
     }
 }
