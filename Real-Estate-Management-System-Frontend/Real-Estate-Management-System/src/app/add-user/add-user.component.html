@@ -1,0 +1,71 @@
+<div class="d-flex">
+  <!-- Main Content -->
+  <div class="content flex-grow-1">
+    <!-- Navbar Component -->
+    <!--<app-menu></app-menu> -->
+  
+    <!-- Add User Start -->
+    <div class="container-fluid p-4">
+      <div class="bg-secondary rounded p-4">
+        <h3 class="mb-4 text-primary">
+          <i class="fa fa-user-plus me-2"></i> User Registration
+        </h3>
+        
+        <!-- Using [formGroup] instead of template-driven form approach -->
+        <form #addUserForm="ngForm">
+          <div class="custom-horizontal-flex">
+            <div class="mb-3">
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="firstName" placeholder="Enter first name..." formControlName="firstName">
+            </div>
+  
+            <div class="mb-3">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="lastName" placeholder="Enter last name..." formControlName="lastName">
+            </div>
+  
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" placeholder="Enter username..." formControlName="username">
+            </div>
+  
+            <div class="mb-3">
+              <label for="phoneNumber" class="form-label">Phone Number</label>
+              <input type="text" class="form-control" id="phoneNumber" placeholder="Enter phone number..." formControlName="phoneNumber">
+            </div>
+          </div>
+  
+          <div class="custom-horizontal-flex">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter email..." formControlName="email">
+            </div>
+  
+            <div class="mb-3">
+              <label for="photoUrl" class="form-label">Photo URL</label>
+              <input type="text" class="form-control" id="photoUrl" placeholder="Enter photo URL..." formControlName="photoUrl">
+            </div>
+  
+            <div class="form-floating mb-3">
+              <select class="form-select" id="role" formControlName="role">
+                <option value="" disabled>Select role...</option>
+                <option *ngFor="let r of userService.userRoles" [value]="r">{{ r }}</option>
+              </select>
+              <label for="role">User Role</label>
+            </div>
+          </div>
+  
+          <div class="custom-horizontal-flex">
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Enter password..." formControlName="encryptedPassword">
+            </div>
+          </div>
+          
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary" [disabled]="addUserForm.invalid" (click)="addUser(addUserForm)">Add User</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
