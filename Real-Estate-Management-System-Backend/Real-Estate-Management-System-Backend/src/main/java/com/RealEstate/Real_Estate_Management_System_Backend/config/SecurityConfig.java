@@ -38,60 +38,6 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/logout").permitAll()
-                        .requestMatchers("/agent/**").hasRole("AGENT")
-                        .requestMatchers("/admin/**").hasAnyRole("AGENT", "ADMIN")
-                        .anyRequest().authenticated()
-                )
-                .formLogin(form -> form
-                        .loginProcessingUrl("/login")
-                        .successHandler((req, res, auth) -> res.setStatus(200))
-                        .failureHandler((req, res, ex) -> res.sendError(401))
-                )
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessHandler((req, res, auth) -> res.setStatus(200))
-                )
-        ;
-        return http.build();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-        return authConfig.getAuthenticationManager();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        InMemoryUserDetailsManager uds = new InMemoryUserDetailsManager();
-        uds.createUser(
-                User.withUsername("admin")
-                        .password("{noop}adminpass")
-                        .roles("ADMIN")
-                        .build()
-        );
-        uds.createUser(
-                User.withUsername("agent")
-                        .password("{noop}agentpass")
-                        .roles("AGENT")
-                        .build()
-        );
-        uds.createUser(
-                User.withUsername("Shpetim")
-                        .password("{noop}Shpetim123")
-                        .roles("ADMIN")  // Assign appropriate role
-                        .build()
-        );
-        return uds;
-    }
-
-
-    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
