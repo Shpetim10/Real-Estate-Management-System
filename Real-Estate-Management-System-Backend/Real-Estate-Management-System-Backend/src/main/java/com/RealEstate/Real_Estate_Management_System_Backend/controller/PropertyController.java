@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/property-management")
+@RequestMapping("/agent/property-management")
 public class PropertyController {
     private final PropertyService propertyService;
 
@@ -31,6 +31,7 @@ public class PropertyController {
 
     @PostMapping("/add-property")
     public ResponseEntity<Property> addProperty(@RequestBody Property newProperty){
+        System.out.println("Inside controller");
         propertyService.saveProperty(newProperty);
         return new ResponseEntity<>(newProperty,HttpStatus.OK);
     }
@@ -41,7 +42,7 @@ public class PropertyController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/update-proeprty/{propertyId}")
+    @PutMapping("/update-property/{propertyId}")
     public ResponseEntity<Property> updateProperty(@PathVariable long propertyId, @RequestBody Property updatedUser){
         propertyService.updateProperty(propertyId,updatedUser);
         return new ResponseEntity<>(updatedUser,HttpStatus.OK);

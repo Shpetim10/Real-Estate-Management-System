@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { MenuComponent } from "../menu/menu.component";
+import { NavbarComponent } from "../navbar/navbar.component";
 
 @Component({
   standalone: true,
   selector: 'app-add-user',
-  imports: [CommonModule, FormsModule, MenuComponent],
+  imports: [CommonModule, FormsModule, MenuComponent, NavbarComponent],
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })

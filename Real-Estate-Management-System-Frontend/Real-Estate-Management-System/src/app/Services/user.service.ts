@@ -7,7 +7,7 @@ import { User } from '../Entities/User';
   providedIn: 'root'
 })
 export class UserService {
-  private apiServerUrl='http://localhost:8080/user-management';
+  private apiServerUrl='http://localhost:8080/admin/user-management';
   
   constructor(private http: HttpClient) { }
   

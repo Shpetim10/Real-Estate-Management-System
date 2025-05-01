@@ -2,12 +2,13 @@ import { PropertyServiceService } from './../Services/property-service.service';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule ,NgForm} from '@angular/forms';
-import { MenuComponent } from "../menu/menu.component"; 
+import { MenuComponent } from "../menu/menu.component";
+import { NavbarComponent } from "../navbar/navbar.component"; 
 
 @Component({
   standalone: true,
   selector: 'app-add-property',
-  imports: [CommonModule, FormsModule, MenuComponent],
+  imports: [CommonModule, FormsModule, MenuComponent, NavbarComponent],
   templateUrl: './add-property.component.html',
   styleUrls: ['./add-property.component.css']
 })
