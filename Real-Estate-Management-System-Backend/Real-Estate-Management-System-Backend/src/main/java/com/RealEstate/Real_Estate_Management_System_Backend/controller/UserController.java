@@ -10,7 +10,7 @@ import org.yaml.snakeyaml.internal.Logger;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user-management")
+@RequestMapping("/admin/user-management")
 public class UserController {
 
     Logger logger = Logger.getLogger(this.getClass().getName());

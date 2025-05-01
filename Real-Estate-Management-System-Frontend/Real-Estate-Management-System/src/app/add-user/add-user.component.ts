@@ -1,39 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule , NgForm} from '@angular/forms';
+import { UserService } from './../Services/user.service';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../Services/user.service'; // Adjust the import path as necessary
+import { FormsModule, NgForm } from '@angular/forms';
+import { MenuComponent } from "../menu/menu.component";
+import { NavbarComponent } from "../navbar/navbar.component";
 
 @Component({
+  standalone: true,
   selector: 'app-add-user',
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    CommonModule,
-    FormsModule
-  ],
+  imports: [CommonModule, FormsModule, MenuComponent, NavbarComponent],
   templateUrl: './add-user.component.html',
-  styleUrl: './add-user.component.css'
+  styleUrls: ['./add-user.component.css']
 })
-
 export class AddUserComponent {
+  constructor(public userService: UserService) {}
 
-  constructor(
-    public userService: UserService // Make sure this service is imported and provided
-  ) {}
-
-
- // Replace this simpler version
-addUser(userForm: NgForm): void {
-  this.userService.addUser(userForm.value).subscribe({
-    next: (response) => {
-      console.log('User added successfully', response);
-      userForm.reset(); // Reset the form after successful submission
-      // Optionally reset the form or perform other actions
-    },
-    error: (error) => {
-      console.error('Error adding user', error);
-      // Handle the error appropriately
-    }
-  })
-}
+  addUser(newUser: NgForm) {
+    this.userService.addUser(newUser.value).subscribe({
+      next: (response) => {
+        alert("User was added successfully!");
+        console.log(newUser.value);
+        newUser.resetForm();
+      },
+      error: (error) => alert("Error!")
+    });
+  }
 }

@@ -8,5 +8,6 @@ export const routes: Routes = [
     {path: "add-property", component: AddPropertyComponent},
     {path: "property-management", component: PropertyManagementComponent},
     {path: "add-user",component: AddUserComponent},
-    {path: "log-in", component: LogInComponent}
+    {path: "log-in", component: LogInComponent},
+    { path: '**', redirectTo: 'log-in', pathMatch: 'full' }
 ];

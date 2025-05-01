@@ -9,9 +9,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeletePropertyDialogComponent } from '../delete-property-dialog/delete-property-dialog.component';
 import { ViewPropertyDialogComponent } from '../view-property-dialog/view-property-dialog.component';
 import { EditPropertyComponent } from '../edit-property/edit-property.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 @Component({
   selector: 'app-property-management',
-  imports: [MenuComponent,CommonModule],
+  imports: [MenuComponent,CommonModule, NavbarComponent],
   templateUrl: './property-management.component.html',
   styleUrl: './property-management.component.css'
 })
@@ -26,7 +27,7 @@ export class PropertyManagementComponent {
   getAllProperties(){
     this.propertyService.getAllProperties().subscribe({
       next: (response)=> {this.properties=response; console.log(response)},
-      error: (error)=> alert("Error fetching properties!")
+      error: (error)=> console.log("Error fetching properties!")
     });
   }
   

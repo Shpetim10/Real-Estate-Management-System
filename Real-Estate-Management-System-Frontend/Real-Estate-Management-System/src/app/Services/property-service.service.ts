@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PropertyServiceService {
-  private apiServerUrl = 'http://localhost:8080/property-management';
+  private apiServerUrl = 'http://localhost:8080/agent/property-management';
   
   constructor(private http: HttpClient) { }
   
@@ -39,18 +39,18 @@ export class PropertyServiceService {
   }
   
   public addProperty(property: Property): Observable<Property>{
-    return this.http.post<Property>(this.apiServerUrl+'/add-property',property);
+    return this.http.post<Property>(this.apiServerUrl+'/add-property',property,{withCredentials: true});
   }
   
   public getAllProperties(){
-    return this.http.get<Property[]>(this.apiServerUrl+"/get-properties");
+    return this.http.get<Property[]>(this.apiServerUrl+"/get-properties",{withCredentials: true});
   }
   
   public deleteProperty(propertyId: number){
-    return this.http.delete<Property>(this.apiServerUrl+"/delete-property/"+propertyId);
+    return this.http.delete<Property>(this.apiServerUrl+"/delete-property/"+propertyId, {withCredentials: true});
   }
   
   public updateProperty(oldProperty: Property, updatedPropety: Property){
-    return this.http.put<Property>(this.apiServerUrl+"/update-property/"+oldProperty.propertyId,updatedPropety);
+    return this.http.put<Property>(this.apiServerUrl+"/update-property/"+oldProperty.propertyId,updatedPropety,{withCredentials: true});
   }
 }
