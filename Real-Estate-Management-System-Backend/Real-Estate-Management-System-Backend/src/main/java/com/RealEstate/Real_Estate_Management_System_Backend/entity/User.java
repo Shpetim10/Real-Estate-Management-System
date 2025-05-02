@@ -1,5 +1,6 @@
 package com.RealEstate.Real_Estate_Management_System_Backend.entity;
 
+import com.RealEstate.Real_Estate_Management_System_Backend.enums.Roles;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -103,11 +104,11 @@ public class User {
         this.phone = phone;
     }
 
-    public List<String> getRoles() {
+    public Roles getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(Roles roles) {
         this.roles = roles;
     }
 
