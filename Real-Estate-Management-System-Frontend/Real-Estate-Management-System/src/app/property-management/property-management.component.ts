@@ -64,7 +64,7 @@ export class PropertyManagementComponent {
     const dialog=this.dialog.open(EditPropertyComponent,{
       width: '550px',
       data: {
-        property: oldProperty
+        property: toEdit
       }
     })
     

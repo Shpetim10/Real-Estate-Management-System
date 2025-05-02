@@ -39,7 +39,13 @@
                 "src/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css",
                 "src/assets/vendor/libs/apex-charts/apex-charts.css",
                 "src/assets/css/hover-style.css",
-                "src/assets/css/roomStyle.css"
+                "src/assets/css/roomStyle.css",
+                "client-view-assets/fonts/icomoon/style.css",
+                "client-view-assets/fonts/flaticon/font/flaticon.css",
+                "client-view-assets/css/tiny-slider.css",
+                "client-view-assets/css/aos.css",
+                "client-view-assets/css/style.css"
+
               ],
               "scripts": [
                   "src/assets/vendor/libs/jquery/jquery.js",
@@ -50,6 +56,7 @@
                   "src/assets/vendor/libs/apex-charts/apexcharts.js",
                   "src/assets/js/main.js",
                   "src/assets/js/dashboards-analytics.js"
+                
                 ],
 
             "server": "src/main.server.ts",

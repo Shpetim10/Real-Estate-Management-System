@@ -1,0 +1,27 @@
+<div id="agentsCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div *ngFor="let group of agentGroups; let i = index" [ngClass]="{'carousel-item': true, 'active': i === 0}">
+      <div class="row">
+        <div *ngFor="let agent of group" class="col-md-4">
+          <div class="person">
+            <img [src]="agent.image" alt="Image" class="img-fluid" />
+            <div class="person-contents">
+              <h2><a href="#">{{ agent.name }}</a></h2>
+              <p><i class="bx bx-phone"></i> {{agent.phone}}</p>
+              <p><i class="bx bx-envelope"></i> {{agent.email}}</p>
+              <span class="meta d-block mb-3">Real Estate Agent</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carousel Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#agentsCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#agentsCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>

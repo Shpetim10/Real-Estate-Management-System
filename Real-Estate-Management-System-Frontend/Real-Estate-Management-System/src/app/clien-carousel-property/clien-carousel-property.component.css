@@ -1,0 +1,103 @@
+/* Ensure the carousel container is properly sized */
+#propertyCarousel {
+  position: relative;
+  z-index: 10; /* Ensure it appears above other elements */
+  overflow: visible; /* Allow content to overflow if necessary */
+}
+
+/* Ensure carousel items are fully visible */
+.carousel-item {
+  position: relative;
+  display: flex; /* Ensure items are aligned properly */
+  flex-wrap: wrap; /* Allow wrapping of items */
+  overflow: visible; /* Prevent clipping of content */
+  min-height: 100%; /* Ensure items take up full height */
+}
+
+/* Ensure property items are properly displayed */
+.property-item {
+  position: relative;
+  z-index: 1; /* Ensure it appears above other elements */
+  background-color: #fff; /* Add a white background for better visibility */
+  border-radius: 8px; /* Add rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  overflow: hidden; /* Prevent content overflow */
+  height: 100%; /* Ensure the property item takes up full height */
+}
+
+/* Ensure images are responsive and fully visible */
+.property-item .img img {
+  width: 100%; /* Ensure the image takes up full width */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure the image covers the container */
+}
+
+/* Add spacing between property items */
+.property-item {
+  margin-bottom: 20px; /* Add spacing between items */
+}
+
+/* Ensure carousel controls are properly positioned */
+.carousel-control-prev,
+.carousel-control-next {
+  z-index: 11; /* Ensure controls appear above carousel items */
+}
+
+/* Add responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .property-item {
+    margin-bottom: 15px; /* Reduce spacing for smaller screens */
+  }
+
+  .carousel-item {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+  }
+}
+/* Ensure carousel controls are properly positioned and visible */
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute; /* Ensure the buttons are positioned relative to the carousel */
+  top: 50%; /* Center the buttons vertically */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+  z-index: 20; /* Ensure the buttons appear above carousel items */
+  width: 50px; /* Set a consistent width for the buttons */
+  height: 50px; /* Set a consistent height for the buttons */
+  background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background for visibility */
+  border-radius: 50%; /* Make the buttons circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff; /* Ensure the icons are visible */
+  border: none; /* Remove any borders */
+  outline: none; /* Remove focus outlines */
+}
+
+/* Ensure the icons inside the buttons are visible */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 20px; /* Adjust the size of the icons */
+  height: 20px;
+  background-size: 100%; /* Ensure the icons are fully visible */
+  filter: invert(1); /* Make the icons white for better visibility */
+}
+
+/* Add hover effect for better interactivity */
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: rgba(0, 0, 0, 0.7); /* Darken the background on hover */
+}
+
+/* Add responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 40px; /* Reduce button size for smaller screens */
+    height: 40px;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 15px; /* Reduce icon size for smaller screens */
+    height: 15px;
+  }
+}
