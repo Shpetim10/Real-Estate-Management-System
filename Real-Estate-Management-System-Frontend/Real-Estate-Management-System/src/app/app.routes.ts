@@ -6,6 +6,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { ClientMainViewComponent } from './client-main-view/client-main-view.component';
 import { ClienCarouselPropertyComponent } from './clien-carousel-property/clien-carousel-property.component';
 import { ClientAgentViewComponent } from './client-agent-view/client-agent-view.component';
+import { ViewPropertyClientComponent } from './view-property-client/view-property-client.component';
 
 export const routes: Routes = [
     {path: "add-property", component: AddPropertyComponent},
@@ -14,5 +15,7 @@ export const routes: Routes = [
     {path: "log-in", component: LogInComponent},
     {path: "horizon-home" , component: ClientMainViewComponent},
     {path: "carousel", component: ClientAgentViewComponent},
-    { path: '**', redirectTo: 'log-in', pathMatch: 'full' }
+    {path: "client-property", component: ViewPropertyClientComponent},
+    { path: '**', redirectTo: 'horizon-home', pathMatch: 'full' }
 ];
+

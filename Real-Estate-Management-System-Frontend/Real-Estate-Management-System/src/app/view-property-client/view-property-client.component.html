@@ -1,0 +1,220 @@
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+        <span class="icofont-close js-menu-toggle"></span>
+    </div>
+</div>
+      <div class="site-mobile-menu-body"><ul class="site-nav-wrap">
+              <li><a href="index.html">Home</a></li>
+              <li class="has-children">
+                <span class="arrow-collapse collapsed" data-bs-toggle="collapse" data-bs-target="#collapseItem0"></span><a href="properties.html">Properties</a>
+                <ul class="collapse" id="collapseItem0">
+                  <li><a href="#">Buy Property</a></li>
+                  <li><a href="#">Sell Property</a></li>
+                  <li class="has-children">
+                    <span class="arrow-collapse collapsed" data-bs-toggle="collapse" data-bs-target="#collapseItem1"></span><a href="#">Dropdown</a>
+                    <ul class="collapse" id="collapseItem1">
+                      <li><a href="#">Sub Menu One</a></li>
+                      <li><a href="#">Sub Menu Two</a></li>
+                      <li><a href="#">Sub Menu Three</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="about.html">About</a></li>
+              <li class="active"><a href="contact.html">Contact Us</a></li>
+            </ul></div>
+    </div>
+
+<nav class="site-nav">
+    <div class="container">
+        <div class="menu-bg-wrap">
+          <div class="site-navigation">
+            <a [routerLink]="['/horizon-home']" routerLinkActive="router-link-active" class="logo m-0 float-start">Horizon Home</a>
+
+            <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
+              <li><a [routerLink]="['/horizon-home']">Home</a></li>
+              <li class="active"><a [routerLink]="['/log-in']" class="btn btn-primary">Log In</a></li>
+            </ul>
+
+            <a class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
+              <span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <div class="section py-5">
+        <div class="container">
+          <div class="row gx-5">
+            
+            <!-- LEFT SIDE: Property Details -->
+            <div class="col-lg-8">
+              <!-- Property Image -->
+              <div class="mb-4">
+                <img [src]="property.imageUrl" alt="Property Image" class="img-fluid rounded border shadow w-100">
+              </div>
+      
+              <!-- Property Details Grid -->
+              <div class="row gy-4">
+                <div class="col-md-6">
+                  <strong><i class="bx bx-hash"></i> Property ID:</strong>
+                  <p>{{ property.propertyId }}</p>
+                </div>
+                <div class="col-md-6">
+                  <strong><i class="bx bx-id-card"></i> Government Issued ID:</strong>
+                  <p>{{ property.governIssuedId }}</p>
+                </div>
+                <div class="col-md-6">
+                  <strong><i class="bx bx-building-house"></i> Property Type:</strong>
+                  <p>{{ property.propertyType }}</p>
+                </div>
+                <div class="col-md-6">
+                  <strong><i class="bx bx-current-location"></i> Address:</strong>
+                  <p>{{ property.address }}, {{ property.city }}, {{ property.country }}</p>
+                </div>
+                <div class="col-md-6">
+                  <strong><i class="bx bx-bed"></i> Bedrooms:</strong>
+                  <p>{{ property.bedrooms }}</p>
+                </div>
+                <div class="col-md-6">
+                  <strong><i class="bx bx-bath"></i> Bathrooms:</strong>
+                  <p>{{ property.bathrooms }}</p>
+                </div>
+                <div class="col-md-6">
+                  <strong><i class="bx bx-fullscreen"></i> Area:</strong>
+                  <p>{{ property.area }} sq ft</p>
+                </div>
+                <div class="col-md-6">
+                  <strong><i class="bx bx-building"></i> Floor:</strong>
+                  <p>{{ property.floor }}</p>
+                </div>
+                <div class="col-md-6">
+                  <strong><i class="bx bx-dollar"></i> Price:</strong>
+                  <p>${{ property.price }}</p>
+                </div>
+                <div class="col-md-6">
+                  <strong><i class="bx bx-badge-check"></i> Status:</strong>
+                  <p>{{ property.status }}</p>
+                </div>
+              </div>
+      
+              <!-- Description -->
+              <div class="mt-4">
+                <strong><i class="bx bx-file"></i> Description:</strong>
+                <p>{{ property.description }}</p>
+              </div>
+      
+              <!-- Features -->
+              <div class="mt-4">
+                <strong><i class="bx bx-star"></i> Features:</strong>
+                <ul class="list-group list-group-flush mt-2" *ngIf="property.features.length > 0">
+                  <li *ngFor="let feature of property.features"
+                      class="list-group-item bg-transparent d-flex align-items-center gap-2 ps-0"
+                      [class]="propertyService.findIconNameByFeatureName(feature)">
+                    {{ feature }}
+                  </li>
+                </ul>
+                <p *ngIf="property?.features?.length === 0" class="text-muted">No features listed.</p>
+              </div>
+            </div>
+      
+            <!-- RIGHT SIDE: Agent -->
+            <div class="col-lg-4">
+              <h1>..............................</h1>
+              <h1 class="heading text-primary mb-1">Property: {{property.governIssuedId}}</h1>
+              <h2 class="heading text-primary mb-2">{{ property.address }}</h2>
+              <p class="meta mb-3">{{ property.city }}, {{ property.country }}</p>
+              <p class="text-black-50 mb-4">{{ property.description }}</p>
+      
+              <div class="agent-box border rounded p-4 shadow-sm bg-light">
+                <div class="img mb-3 text-center">
+                  <img src="images/person_2-min.jpg" alt="Agent" class="img-fluid rounded-circle" style="width: 100px;">
+                </div>
+                <div class="text text-center">
+                  <h3 class="mb-1">Alicia Huston</h3>
+                  <div class="meta mb-3">Real Estate</div>
+                  <p class="text-muted small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione laborum quo quos omnis sed magnam.</p>
+                  <ul class="list-unstyled social dark-hover d-flex justify-content-center mt-3">
+                    <li class="me-2"><a href="#"><span class="icon-instagram"></span></a></li>
+                    <li class="me-2"><a href="#"><span class="icon-twitter"></span></a></li>
+                    <li class="me-2"><a href="#"><span class="icon-facebook"></span></a></li>
+                    <li class="me-2"><a href="#"><span class="icon-linkedin"></span></a></li>
+                  </ul>
+                </div>
+              </div>
+              
+              <!-- Client Information -->
+              <div class="mt-5 agent-box border rounded p-4 shadow-sm bg-light">
+                <h5 class="mb-3 text-primary"><i class="bx bx-user-circle"></i> Client Information</h5>
+                <form #clientForm="ngForm">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="clientFullName" class="form-label">Full Name</label>
+                      <input type="text" class="form-control" id="clientFullName" placeholder="Enter full name" name="fullName" ngModel required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="clientEmail" class="form-label">Email</label>
+                      <input type="text" class="form-control" id="clientEmail" placeholder="Enter email" name="emailAddress" ngModel required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="clientPhone" class="form-label">Contact Number</label>
+                      <input type="tel" class="form-control" id="clientPhone" placeholder="Enter contact number" name="contactNumber" ngModel required>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-primary mt-3" (click)="sendEmail(clientForm)">Submit Inquiry</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            
+ 
+          </div>
+        </div>
+      </div>
+      
+
+    <div class="site-footer">
+      <div class="container">
+        
+        <div class="row mt-5">
+          <div class="col-12 text-center">
+            <!-- 
+              **==========
+              NOTE: 
+              Please don't remove this copyright link unless you buy the license here https://untree.co/license/  
+              **==========
+            -->
+
+            <p>
+              Copyright ©
+              <script>
+                document.write(new Date().getFullYear());
+              </script>2025
+              . All Rights Reserved. — Designed with love by
+              <a href="https://untree.co">Untree.co</a>
+              <!-- License information: https://untree.co/license/ -->
+            </p>
+            <div>
+              Distributed by
+              <a href="https://themewagon.com/" target="_blank">themewagon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.site-footer -->
+
+    <!-- Preloader -->
+    <div id="overlayer" style="opacity: -0.1; display: none;"></div>
+    <div class="loader" style="opacity: -0.1; display: none;">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>

@@ -1,9 +1,9 @@
+import { PropertyDataService } from './../Services/property-data.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Property } from '../Entities/Property';
 import { PropertyServiceService } from '../Services/property-service.service';
-import { subscribe } from 'diagnostics_channel';
-import { response } from 'express';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-clien-carousel-property',
   imports: [CommonModule],
@@ -11,9 +11,10 @@ import { response } from 'express';
   styleUrl: './clien-carousel-property.component.css'
 })
 export class ClienCarouselPropertyComponent implements OnInit {
+
   properties: Property[] = [];
   propertiesGroups: any[]=[];
-  constructor(public propertyService: PropertyServiceService) { }
+  constructor(public propertyService: PropertyServiceService,private propertyDataService: PropertyDataService,private router:Router) { }
 
   ngOnInit(): void {
     this.propertyService.getAllProperties().subscribe({
@@ -35,5 +36,10 @@ export class ClienCarouselPropertyComponent implements OnInit {
       return Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
         arr.slice(i * size, i * size + size)
       );
+    }
+    
+    openViewPage(property: Property){
+      this.propertyDataService.property = property;
+      this.router.navigate(['/client-property']);
     }
 }
