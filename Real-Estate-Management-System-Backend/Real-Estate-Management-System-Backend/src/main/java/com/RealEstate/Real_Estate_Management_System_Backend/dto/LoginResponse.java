@@ -15,4 +15,9 @@ public class LoginResponse {
     private List<String> roles;
     private boolean success;
     private String message;
+
+    public LoginResponse(String invalidCredentials, boolean b) {
+        this.message = invalidCredentials;
+        this.success = b;
+    }
 }
