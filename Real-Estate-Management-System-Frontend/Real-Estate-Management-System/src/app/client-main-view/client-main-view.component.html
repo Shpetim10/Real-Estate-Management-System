@@ -1,0 +1,222 @@
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+      <span class="icofont-close js-menu-toggle"></span>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
+
+<nav class="site-nav">
+  <div class="container">
+    <div class="menu-bg-wrap">
+      <div class="site-navigation">
+        <a [routerLink]="['/horizon-home']" routerLinkActive="router-link-active"  class="logo m-0 float-start">Horizon Home</a>
+
+        <ul
+          class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+        >
+          <li><a [routerLink]="['/log-in']" class="btn  btn-primary">Log in</a></li>
+        </ul>
+
+        <a
+          class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+          data-toggle="collapse"
+          data-target="#main-navbar"
+        >
+          <span></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <app-client-background-carousel></app-client-background-carousel>
+</div>
+
+<!--Properties-->
+<div class="section"  id="properties">
+  <div class="container">
+    <div class="row">
+      <div class="col-12" >
+        <app-clien-carousel-property></app-clien-carousel-property>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Features-->
+<section class="features-1" id="features1">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 col-lg-3">
+        <div class="box-feature">
+          <span class="flaticon-house"></span>
+          <h3 class="mb-3">Explore Our Properties</h3>
+          <p>
+            Discover a curated selection of premium properties designed for comfort, luxury, and investment.
+          </p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="box-feature">
+          <span class="flaticon-building"></span>
+          <h3 class="mb-3">Find Your Dream Home</h3>
+          <p>
+            Whether you're buying or investing, browse exceptional properties tailored to your lifestyle.
+          </p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="box-feature">
+          <span class="flaticon-house-3"></span>
+          <h3 class="mb-3">Connect With Top Agents</h3>
+          <p>
+            Work with experienced real estate professionals to find the perfect property match for you.
+          </p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="box-feature">
+          <span class="flaticon-house-1"></span>
+          <h3 class="mb-3">Exclusive Listings Available</h3>
+          <p>
+            Explore handpicked properties with modern amenities, prime locations, and competitive pricing.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Features 2-->
+<div class="section section-4 bg-light">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-5">
+        <h2 class="font-weight-bold heading text-primary mb-4">
+          Find Your Perfect Home Today
+        </h2>
+        <p class="text-black-50">
+          Discover stunning properties tailored to your needs, with expert guidance every step of the way.
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-between mb-5">
+      <div class="col-lg-7 mb-5 mb-lg-0 order-lg-2">
+        <div class="img-about dots">
+          <img src="https://wallpapers.com/images/hd/spanish-luxury-house-with-wide-front-yard-tji6xt3y04nn99la.jpg" width="500px" height="500px" alt="Luxury Home" class="img-fluid" />
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="d-flex feature-h">
+          <span class="wrap-icon me-3">
+            <span class="icon-home2"></span>
+          </span>
+          <div class="feature-text">
+            <h3 class="heading">The agency with most listings</h3>
+            <p class="text-black-50">
+              Explore a vast collection of homes, apartments, and commercial properties to suit your lifestyle.
+            </p>
+          </div>
+        </div>
+
+        <div class="d-flex feature-h">
+          <span class="wrap-icon me-3">
+            <span class="icon-person"></span>
+          </span>
+          <div class="feature-text">
+            <h3 class="heading">Trusted Real Estate Experts</h3>
+            <p class="text-black-50">
+              Connect with top-rated agents who are dedicated to helping you find the perfect property.
+            </p>
+          </div>
+        </div>
+
+        <div class="d-flex feature-h">
+          <span class="wrap-icon me-3">
+            <span class="icon-security"></span>
+          </span>
+          <div class="feature-text">
+            <h3 class="heading">Verified & Secure Properties</h3>
+            <p class="text-black-50">
+              Every listing is vetted for authenticity and legal security, ensuring a stress-free buying experience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="row section-counter mt-5 justify-content-center d-flex flex-wrap">
+      <!-- Counter 1 -->
+      <div class="col-3 d-flex justify-content-center">
+        <div class="counter-wrap mb-5 mb-lg-0 text-center">
+          <span class="number"><span class="countup text-primary">{{getBuyProperties().length}}</span></span>
+          <span class="caption text-black-50"># of To Buy Properties</span>
+        </div>
+      </div>
+    
+      <!-- Counter 2 -->
+      <div class="col-3 d-flex justify-content-center">
+        <div class="counter-wrap mb-5 mb-lg-0 text-center">
+          <span class="number"><span class="countup text-primary">{{getSoldProeprties().length}}</span></span>
+          <span class="caption text-black-50"># of Sell Properties</span>
+        </div>
+      </div>
+    
+      <!-- Counter 3 -->
+      <div class="col-3 d-flex justify-content-center">
+        <div class="counter-wrap mb-5 mb-lg-0 text-center">
+          <span class="number"><span class="countup text-primary">{{properties.length}}</span></span>
+          <span class="caption text-black-50"># of All Properties</span>
+        </div>
+      </div>
+    
+      <!-- Counter 4 -->
+      <div class="col-3 d-flex justify-content-center">
+        <div class="counter-wrap mb-5 mb-lg-0 text-center">
+          <span class="number"><span class="countup text-primary">{{agents.length}}</span></span>
+          <span class="caption text-black-50"># of Agents</span>
+        </div>
+      </div>
+    </div>
+
+<!--Agents-->
+<div class="section bg-light">
+  <div class="container">
+    <app-client-agent-view></app-client-agent-view>
+  </div>
+</div>
+
+<div class="site-footer">
+  <div class="container">
+  
+    <div class="row mt-5">
+      <div class="col-12 text-center">
+        <!-- 
+          **==========
+          NOTE: 
+          Please don't remove this copyright link unless you buy the license here https://untree.co/license/  
+          **==========
+        -->
+
+        <p>
+          Copyright &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          . All Rights Reserved. &mdash; Designed with love by
+          <a href="https://untree.co">Untree.co</a>
+          <!-- License information: https://untree.co/license/ -->
+        </p>
+        <div>
+          Distributed by
+          <a href="https://themewagon.com/" target="_blank">themewagon</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+</div>  

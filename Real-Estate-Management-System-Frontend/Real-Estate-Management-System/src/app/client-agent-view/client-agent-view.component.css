@@ -1,0 +1,61 @@
+.person {
+  text-align: center;
+  padding: 20px;
+}
+
+.person img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover; /* Keeps a full fit */
+  border-radius: 50%; /* Ensures circular shape */
+  display: block;
+  margin: auto; /* Centers the image */
+}
+/* Ensure carousel controls are properly positioned and visible */
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute; /* Ensure the buttons are positioned relative to the carousel */
+  top: 50%; /* Center the buttons vertically */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+  z-index: 20; /* Ensure the buttons appear above carousel items */
+  width: 50px; /* Set a consistent width for the buttons */
+  height: 50px; /* Set a consistent height for the buttons */
+  background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background for visibility */
+  border-radius: 50%; /* Make the buttons circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff; /* Ensure the icons are visible */
+  border: none; /* Remove any borders */
+  outline: none; /* Remove focus outlines */
+}
+
+/* Ensure the icons inside the buttons are visible */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 20px; /* Adjust the size of the icons */
+  height: 20px;
+  background-size: 100%; /* Ensure the icons are fully visible */
+  filter: invert(1); /* Make the icons white for better visibility */
+}
+
+/* Add hover effect for better interactivity */
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: rgba(0, 0, 0, 0.7); /* Darken the background on hover */
+}
+
+/* Add responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 40px; /* Reduce button size for smaller screens */
+    height: 40px;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 15px; /* Reduce icon size for smaller screens */
+    height: 15px;
+  }
+}

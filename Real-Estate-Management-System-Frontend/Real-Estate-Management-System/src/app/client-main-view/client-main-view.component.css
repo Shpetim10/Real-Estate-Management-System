@@ -1,0 +1,222 @@
+@import url("../../../client-view-assets/fonts/icomoon/style.css");
+@import url("../../../client-view-assets/fonts/flaticon/font/flaticon.css");
+
+@import url("../../../client-view-assets/css/tiny-slider.css");
+@import url("../../../client-view-assets/css/style.css");
+
+@import url("../../../client-view-assets/css/bootstrap-grid.css");
+@import url("../../../client-view-assets/css/aos.css");
+@import url("../../../client-view-assets/css/bootstrap-reboot.css");
+@import url("../../../client-view-assets/css/bootstrap-utilities.css");
+@import url("../../../client-view-assets/css/bootstrap.css");
+
+.img-about {
+  position: relative; /* Ensures child elements align properly */
+}
+
+.dots {
+  position: absolute;
+  top: 50%; /* Adjust as needed */
+  right: 10px; /* Fine-tune placement */
+  transform: translateY(-50%); /* Center dots vertically */
+}
+
+/* Ensure the features section is visible */
+
+.features-1 {
+  position: relative; /* Ensure proper stacking context */
+  z-index: 1; /* Place it above other elements */
+  background-color: #f8f9fa; /* Light background for visibility */
+  padding: 60px 0; /* Add padding for spacing */
+  overflow: visible; /* Prevent content clipping */
+}
+
+/* Style the row to display features horizontally */
+.features-1 .row {
+  display: flex; /* Use flexbox for horizontal alignment */
+  flex-direction: horizontal;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  justify-content: space-between; /* Add equal spacing between items */
+  gap: 20px; /* Add spacing between feature boxes */
+  margin: 0 auto; /* Center the row */
+  max-width: 1200px; /* Limit the maximum width of the row */
+}
+
+/* Style individual feature boxes */
+.box-feature {
+  position: relative;
+  z-index: 2; /* Ensure it appears above the background */
+  background-color: #fff; /* Add a white background for contrast */
+  border-radius: 8px; /* Add rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  padding: 20px;
+  text-align: center; /* Center-align the content */
+  flex: 1 1 calc(25% - 20px); /* Ensure each box takes up 25% of the row with spacing */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add hover effect */
+  margin-bottom: 20px; /* Space out the feature boxes vertically */
+}
+
+/* Add hover effect for feature boxes */
+.box-feature:hover {
+  transform: translateY(-5px); /* Slightly lift the box on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhance the shadow on hover */
+}
+
+/* Style the icons in the feature boxes */
+.box-feature span {
+  font-size: 2.5rem; /* Increase icon size */
+  color: #007bff; /* Use primary color for icons */
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+/* Style the headings in the feature boxes */
+.box-feature h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Style the text in the feature boxes */
+.box-feature p {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* Add responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .features-1 .row {
+    gap: 15px; /* Adjust spacing for smaller screens */
+  }
+
+  .box-feature {
+    flex: 1 1 calc(50% - 15px); /* Each box takes up 50% of the row */
+  }
+}
+
+@media (max-width: 576px) {
+  .box-feature {
+    flex: 1 1 100%; /* Each box takes up 100% of the row */
+    max-width: 100%; /* Prevent boxes from exceeding 100% width */
+  }
+}
+
+.section-counter {
+  display: flex;
+  flex-direction: row; /* Ensures horizontal alignment */
+  justify-content: center;
+  gap: 20px; /* Adds space between counters */
+  flex-wrap: wrap; /* Makes it responsive */
+}
+
+.counter-wrap {
+  text-align: center;
+  flex: 1; /* Allows equal distribution */
+  min-width: 150px; /* Prevents counters from getting too small */
+}
+
+/* Ensure sections and containers are properly layered */
+.section {
+    position: relative; /* Ensure sections are properly layered */
+    z-index: 1; /* Place sections above background overlays */
+    background-color: transparent; /* Remove unintended background colors */
+    overflow: hidden; /* Prevent content overflow */
+  }
+  
+  /* Fix overlapping of the testimonial slider */
+  .testimonial-slider-wrap {
+    position: relative;
+    z-index: 2; /* Ensure it appears above other elements */
+    padding: 20px 0; /* Add spacing to prevent overlap */
+  }
+  
+  /* Fix overlapping of the hero section */
+  .hero {
+    position: relative;
+    z-index: 3; /* Ensure it appears above other sections */
+    padding-top: 100px; /* Add spacing to avoid overlap with the navbar */
+  }
+  
+  /* Fix overlapping of the navbar */
+  .site-nav {
+    position: fixed; /* Keep the navbar fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it appears above all other elements */
+    background-color: rgba(255, 255, 255, 0.9); /* Add a semi-transparent background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  }
+  
+  /* Add spacing below the navbar */
+  .hero, .section {
+    margin-top: 80px; /* Adjust based on the height of the navbar */
+  }
+  
+  /* Fix overlapping of the footer */
+  .site-footer {
+    position: relative;
+    z-index: 1; /* Ensure it appears above background elements */
+    padding: 40px 0; /* Add spacing for better visibility */
+    background-color: #f8f9fa; /* Light background for contrast */
+  }
+  
+  /* Ensure proper spacing for rows and columns */
+  .row {
+    margin-top: calc(var(--bs-gutter-y, 1rem) * -1);
+    margin-right: calc(var(--bs-gutter-x, 1.5rem) / -2);
+    margin-left: calc(var(--bs-gutter-x, 1.5rem) / -2);
+  }
+  
+  .row > * {
+    padding-right: calc(var(--bs-gutter-x, 1.5rem) / 2);
+    padding-left: calc(var(--bs-gutter-x, 1.5rem) / 2);
+    margin-top: var(--bs-gutter-y, 1rem);
+  }
+  
+  /* Fix overlapping of the testimonial items */
+  .testimonial {
+    position: relative;
+    z-index: 2; /* Ensure testimonials appear above other elements */
+    background-color: #fff; /* Add a white background for better readability */
+    padding: 20px;
+    border-radius: 8px; /* Add rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  }
+  
+  /* Ensure proper spacing for the testimonial slider */
+  .testimonial-slider {
+    display: flex;
+    gap: 20px; /* Add spacing between testimonial items */
+  }
+  
+  /* Fix overlapping of the agent view */
+  app-client-agent-view {
+    position: relative;
+    z-index: 2; /* Ensure it appears above other sections */
+    padding: 20px 0; /* Add spacing to prevent overlap */
+  }
+  
+  /* Add responsiveness for smaller screens */
+  @media (max-width: 768px) {
+    .site-nav {
+      position: fixed;
+      z-index: 1000;
+      padding: 10px 0;
+    }
+  
+    .hero {
+      margin-top: 60px; /* Adjust for smaller navbar height */
+    }
+  
+    .testimonial-slider {
+      flex-direction: column; /* Stack testimonials vertically */
+      gap: 10px;
+    }
+  
+    .section {
+      padding: 20px 0; /* Reduce padding for smaller screens */
+    }
+  }
