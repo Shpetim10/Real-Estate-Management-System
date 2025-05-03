@@ -54,6 +54,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/admin/user-management/**").permitAll()
                         .requestMatchers("agent/property-management/**").permitAll()
+                        .requestMatchers("api/resources/**").permitAll()
+                        .requestMatchers("email/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

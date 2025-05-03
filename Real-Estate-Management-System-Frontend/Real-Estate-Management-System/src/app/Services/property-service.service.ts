@@ -43,15 +43,18 @@ export class PropertyServiceService {
   public addProperty(property: Property): Observable<Property> {
     return this.authService.getLoggedUser().pipe(
       switchMap((response) => {
-        property.agent = response;
         return this.http.post<Property>(
           `${this.apiServerUrl}/add-property`,
-          { agentUsername: response.username, property },
+          {
+            currentUser: response.username,  
+            property: property
+          },
           { withCredentials: true }
         );
       })
     );
   }
+  
   public getAllProperties(){
     return this.http.get<Property[]>(this.apiServerUrl+"/get-properties",{withCredentials: true});
   }

@@ -70,18 +70,18 @@ export class DashboardComponent {
   }
   
   getProperties(){
-    this.propertyService.getAllProperties().subscribe({
-      next: (response) => {
-        if (response && Array.isArray(response)) {
-          this.properties=response
-        } else {
-          console.error('Unexpected API response:', response);
-        }
-      },
-      error: (err) => {
-        console.error('Error fetching users:', err);
-      }
-    });
+    if((this.currentUser?.roles ?? []).includes('ADMIN')){
+      this.propertyService.getAllProperties().subscribe({
+        next: (response)=> {this.properties=response; console.log(response)},
+        error: (error)=> console.log("Error fetching properties!")
+      });
+    }
+    else{
+      this.propertyService.getAllPropertiesByAgent(this.currentUser?.username ?? '').subscribe({
+        next: (response)=> this.properties=response,
+        error: (err)=> console.log(err)
+      });
+    }
   }
   
   getUsers(){

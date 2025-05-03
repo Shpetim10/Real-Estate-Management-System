@@ -131,22 +131,19 @@
               <p class="meta mb-3">{{ property.city }}, {{ property.country }}</p>
               <p class="text-black-50 mb-4">{{ property.description }}</p>
       
-              <div class="agent-box border rounded p-4 shadow-sm bg-light">
-                <div class="img mb-3 text-center">
-                  <img src="images/person_2-min.jpg" alt="Agent" class="img-fluid rounded-circle" style="width: 100px;">
+              <div class="agent-box border rounded-4 p-4 shadow bg-white text-center">
+                <div class="mb-3">
+                  <img
+                    [src]="property.agent.imageUrl"
+                    alt="Agent"
+                    class="rounded-circle border border-3"
+                    style="width: 110px; height: 110px; object-fit: cover;"
+                  />
                 </div>
-                <div class="text text-center">
-                  <h3 class="mb-1">Alicia Huston</h3>
-                  <div class="meta mb-3">Real Estate</div>
-                  <p class="text-muted small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione laborum quo quos omnis sed magnam.</p>
-                  <ul class="list-unstyled social dark-hover d-flex justify-content-center mt-3">
-                    <li class="me-2"><a href="#"><span class="icon-instagram"></span></a></li>
-                    <li class="me-2"><a href="#"><span class="icon-twitter"></span></a></li>
-                    <li class="me-2"><a href="#"><span class="icon-facebook"></span></a></li>
-                    <li class="me-2"><a href="#"><span class="icon-linkedin"></span></a></li>
-                  </ul>
-                </div>
+                <h5 class="fw-semibold mb-1">{{ property.agent.name }} {{ property.agent.surname }}</h5>
+                <p class="text-muted mb-0" style="font-size: 0.95rem;">Real Estate Agent</p>
               </div>
+              
               
               <!-- Client Information -->
               <div class="mt-5 agent-box border rounded p-4 shadow-sm bg-light">

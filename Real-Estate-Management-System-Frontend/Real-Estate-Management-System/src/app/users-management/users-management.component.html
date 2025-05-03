@@ -1,0 +1,88 @@
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <app-menu></app-menu>
+  
+      <div class="layout-page">
+        <app-navbar></app-navbar>
+  
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="card mb-4">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="bx bx-user"></i> Manage Users</h5>
+                <small class="text-muted"><i class="bx bx-paper-plane"></i> User Management</small>
+              </div>
+  
+              <div class="card-body">
+                <div *ngIf="users.length === 0" class="alert alert-danger text-center" role="alert">
+                  <h2><i class="fas fa-folder-open"></i> There are no users registered yet!</h2>
+                </div>
+  
+                <ng-container *ngIf="users.length > 0">
+                  <div class="mb-4">
+                    <h4 class="text-center"><i class="bx bx-user-circle"></i> System Users</h4>
+                  </div>
+  
+                  <div class="row g-4" *ngFor="let user of users; let i = index">
+                    <div class="col-12">
+                      <div class="row p-3 shadow rounded" style="box-shadow: 0 0 10px 3px #ad7ef7;">
+                        <!-- User Image -->
+                        <div class="col-md-3">
+                          <div class="user-img">
+                            <div class="box12 position-relative">
+                              <img [src]="user.imageUrl" alt="User Profile" class="img-fluid rounded">
+                              <div class="box-content position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white" style="background: rgba(0, 0, 0, 0.5);">
+                                <h5 class="title">User-{{ user.id }}</h5>
+                                <a class="text-white fs-4" (click)="viewUser(user)"><i class="bx bx-show"></i></a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- User Details -->
+                        <div class="col-md-6">
+                          <div class="user-des">
+                            <h5>
+                              <a class="text-decoration-none text-dark" (click)="viewUser(user)">
+                                {{ user.name }} {{ user.surname }}<br>
+                                Role: {{ user.roles.join(', ') }}
+                              </a>
+                            </h5>
+  
+                            <ul class="list-unstyled">
+                              <li><i class="bx bx-user"></i> Username: {{ user.username }}</li>
+                              <li><i class="bx bx-envelope"></i> Email: {{ user.email }}</li>
+                              <li><i class="bx bx-phone"></i> Phone: {{ user.phone }}</li>
+                              <li><i class="bx bx-home"></i> Properties Listed: {{ user.properties.length || 0 }}</li>
+                            </ul>       
+                          </div>
+                        </div>
+  
+                        <!-- User Status and Actions -->
+                        <div class="col-md-3 d-flex flex-column justify-content-between align-items-center">
+                          <div class="user-status text-center">
+                            <h5>Status</h5>
+                            <h3 class="text-muted">N/A</h3>
+                          </div>
+                          <div class="mt-3">
+                            <h6>Actions</h6>
+                            <button class="btn btn-outline-primary btn-sm m-1" (click)="updateUser(user)">
+                              <i class="bx bx-pen"></i>
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm m-1" (click)="deleteUser(user.id)">
+                              <i class="bx bx-trash"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

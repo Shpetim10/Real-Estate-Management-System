@@ -53,6 +53,7 @@ public class UserController {
     @PermitAll
     @PutMapping("/update-user/{id}")
     public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User updatedUser) {
+        System.out.println(id+" is updated!");
         userService.updateUser(id, updatedUser);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }

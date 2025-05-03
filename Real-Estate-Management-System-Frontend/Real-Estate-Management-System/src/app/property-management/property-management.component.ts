@@ -34,7 +34,7 @@ export class PropertyManagementComponent {
       });
     }
     else{
-      this.propertyService.getAllPropertiesByAgent(agent.username).subscribe({
+      this.propertyService.getAllPropertiesByAgent(agent?.username).subscribe({
         next: (response)=> this.properties=response,
         error: (err)=> console.log(err)
       });

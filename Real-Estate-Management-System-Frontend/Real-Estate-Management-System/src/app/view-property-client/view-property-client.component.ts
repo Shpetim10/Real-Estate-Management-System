@@ -18,12 +18,13 @@ export class ViewPropertyClientComponent implements OnInit{
   property :Property={} as Property;
   ngOnInit(): void {
     this.property = this.propertyDataService.property ?? {} as Property;
+    console.log(this.property);
   }
   
   sendEmail(form: NgForm){
-    this.emailService.sendEmailToAgent("xyzfilan@gmail.com",form.value,this.property).subscribe(
+    this.emailService.sendEmailToAgent(this.property.agent.email,form.value,this.property).subscribe(
       {
-        next: ()=> console.log("Agent was notified successfully!"),
+        next: ()=> {console.log("Agent was notified successfully!"); form.resetForm()},
         error: ()=> console.log("There ocurred an error!")
       }
       )

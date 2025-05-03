@@ -32,7 +32,7 @@ public class UserService {
     }
 
     public void updateUser(long id, User user){
-        User userFromDB = userRepository.findById(user.getId()).get();
+        User userFromDB = userRepository.findById(id).get();
         if (userFromDB != null) {
             if (user.getPassword() != null && !user.getPassword().isEmpty()) {
                 userFromDB.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -43,6 +43,7 @@ public class UserService {
             userFromDB.setPhone(user.getPhone());
             userFromDB.setEmail(user.getEmail());
             userFromDB.setRoles(new ArrayList<>(user.getRoles()));
+            userFromDB.setImageUrl(user.getImageUrl());
             userRepository.save(userFromDB);
         }
     }

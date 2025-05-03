@@ -1,6 +1,6 @@
 package com.RealEstate.Real_Estate_Management_System_Backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -13,16 +13,22 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private String name;
+
     @Column(nullable = false)
     private String surname;
+
     @Column(nullable = false, unique = true)
     private String username;
+
     @Column(nullable = false)
     private String password;
+
     @Column(nullable = false, unique = true)
     private String email;
+
     @Column(nullable = false, unique = true)
     private String phone;
 
@@ -32,8 +38,8 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
-    @OneToMany
-    @JsonIgnore
+    @OneToMany(mappedBy = "agent", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("agent")
     private List<Property> properties;
 
     public User() {
@@ -123,6 +129,21 @@ public class User {
 
     public void setProperties(List<Property> properties) {
         this.properties = properties;
+    }
+
+    public void addProperty(Property property) {
+        if (properties == null) {
+            properties = new ArrayList<>();
+        }
+        properties.add(property);
+        property.setAgent(this);
+    }
+
+    public void removeProperty(Property property) {
+        if (properties != null) {
+            properties.remove(property);
+            property.setAgent(null);
+        }
     }
 
     public void addRole(String role) {

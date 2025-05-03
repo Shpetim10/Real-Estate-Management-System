@@ -24,21 +24,21 @@
       </li>
   
       <!-- User Management -->
-      <li class="menu-item">
+      <li class="menu-item" *ngIf="currentUser?.roles?.includes('ADMIN') ?? false">
         <a routerLink="/add-user" routerLinkActive="router-link-active"  class="menu-link">
           <i class="menu-icon tf-icons bx bx-user"></i>
           <div>Add User</div>
         </a>
       </li>
-      <li class="menu-item">
-        <a href="/user-management" class="menu-link">
+      <li class="menu-item" *ngIf="currentUser?.roles?.includes('ADMIN') ?? false">
+        <a href="/users-management" class="menu-link">
           <i class="menu-icon tf-icons bx bx-user"></i>
           <div>Manage Users</div>
         </a>
       </li>
   
       <!-- Property Management -->
-      <li class="menu-item">
+      <li class="menu-item"*ngIf="currentUser?.roles?.includes('AGENT') ?? false">
         <a routerLink="/add-property" routerLinkActive="router-link-active" class="menu-link">
           <i class="menu-icon tf-icons bx bx-building-house"></i>
           <div>Add Property</div>
