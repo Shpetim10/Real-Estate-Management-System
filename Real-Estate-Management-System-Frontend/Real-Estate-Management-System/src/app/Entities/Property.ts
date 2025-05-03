@@ -1,3 +1,5 @@
+import { User } from "./User";
+
 export class Property {
     propertyId: number; // Optional since ID is auto-generated
     governIssuedId: string;
@@ -14,6 +16,7 @@ export class Property {
     price: number;
     status: string;
     imageUrl: string;
+    agent: User;
 
     constructor(
         governIssuedId: string,
@@ -30,7 +33,8 @@ export class Property {
         price: number,
         status: string,
         imageUrl: string,
-        propertyId: number // Optional parameter
+        propertyId: number, // Optional parameter
+        agent: User
     ) {
         this.propertyId = propertyId;
         this.governIssuedId = governIssuedId;
@@ -47,5 +51,6 @@ export class Property {
         this.price = price;
         this.status = status;
         this.imageUrl = imageUrl;
+        this.agent=agent;
     }
 }

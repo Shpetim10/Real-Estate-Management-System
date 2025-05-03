@@ -10,6 +10,8 @@ import { DeletePropertyDialogComponent } from '../delete-property-dialog/delete-
 import { ViewPropertyDialogComponent } from '../view-property-dialog/view-property-dialog.component';
 import { EditPropertyComponent } from '../edit-property/edit-property.component';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { AuthService } from '../Services/auth.service';
+import { User } from '../Entities/User';
 @Component({
   selector: 'app-property-management',
   imports: [MenuComponent,CommonModule, NavbarComponent],
@@ -17,18 +19,33 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrl: './property-management.component.css'
 })
 export class PropertyManagementComponent {
-  constructor(public propertyService: PropertyServiceService, private dialog: MatDialog){}
+  constructor(public propertyService: PropertyServiceService, private dialog: MatDialog,private authService: AuthService){}
   properties: Property[]=[];
-  
+  agent: User|null=null;
   ngOnInit(){
-    this.getAllProperties();
+    this.getLoggedUser();
   }
   
-  getAllProperties(){
-    this.propertyService.getAllProperties().subscribe({
-      next: (response)=> {this.properties=response; console.log(response)},
-      error: (error)=> console.log("Error fetching properties!")
-    });
+  getAllProperties(agent: User){
+    if(this.agent?.roles.includes('ADMIN')){
+      this.propertyService.getAllProperties().subscribe({
+        next: (response)=> {this.properties=response; console.log(response)},
+        error: (error)=> console.log("Error fetching properties!")
+      });
+    }
+    else{
+      this.propertyService.getAllPropertiesByAgent(agent.username).subscribe({
+        next: (response)=> this.properties=response,
+        error: (err)=> console.log(err)
+      });
+    }
+    
+  }
+  getLoggedUser(){
+    this.authService.getLoggedUser().subscribe({
+      next: (response)=> {this.agent=response; this.getAllProperties(this.agent)},
+      error: (err) => console.log(err)
+    })
   }
   
   deleteProperty(propertyId: number){
@@ -72,7 +89,7 @@ export class PropertyManagementComponent {
       {
         if(response!==null){
           this.propertyService.updateProperty(toEdit,response).subscribe({
-            next: (response)=>this.getAllProperties(),
+            next: (response)=>{if (this.agent) { let user: User = this.agent; this.getAllProperties(user); }},
             error: (error)=> console.error(error)
           }); 
         }

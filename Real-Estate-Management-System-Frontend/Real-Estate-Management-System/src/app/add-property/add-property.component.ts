@@ -17,8 +17,7 @@ export class AddPropertyComponent {
   
   addProperty(newProperty: NgForm){
     this.propertyService.addProperty(newProperty.value).subscribe({
-      next: (response) => {
-        alert("Property was added succesfully!");
+      next: () => {
         console.log(newProperty.value);
         newProperty.resetForm();
       },

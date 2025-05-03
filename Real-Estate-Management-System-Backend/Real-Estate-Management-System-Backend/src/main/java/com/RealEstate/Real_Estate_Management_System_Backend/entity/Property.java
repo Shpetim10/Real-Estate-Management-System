@@ -3,6 +3,7 @@ package com.RealEstate.Real_Estate_Management_System_Backend.entity;
 import com.RealEstate.Real_Estate_Management_System_Backend.enums.Features;
 import com.RealEstate.Real_Estate_Management_System_Backend.enums.PropertyStatus;
 import com.RealEstate.Real_Estate_Management_System_Backend.enums.PropertyType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class Property {
     private String imageUrl;
 
     @ManyToOne
+    @JsonIgnore
     private User agent;
 
     public Property(Long propertyId, String governIssuedId, String address, String city, String country, int bedrooms, int bathrooms, int area, int floor, List<Features> features, PropertyType propertyType, String description, double price, PropertyStatus status, String imageUrl, User agent) {

@@ -1,5 +1,6 @@
 package com.RealEstate.Real_Estate_Management_System_Backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class User {
     private List<String> roles = new ArrayList<>();
 
     @OneToMany
+    @JsonIgnore
     private List<Property> properties;
 
     public User() {

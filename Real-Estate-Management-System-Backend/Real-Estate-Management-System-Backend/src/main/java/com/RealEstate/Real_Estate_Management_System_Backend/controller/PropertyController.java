@@ -1,5 +1,6 @@
 package com.RealEstate.Real_Estate_Management_System_Backend.controller;
 
+import com.RealEstate.Real_Estate_Management_System_Backend.dto.PropertyDto;
 import com.RealEstate.Real_Estate_Management_System_Backend.entity.Property;
 import com.RealEstate.Real_Estate_Management_System_Backend.service.PropertyService;
 import jakarta.annotation.security.PermitAll;
@@ -32,12 +33,20 @@ public class PropertyController {
     public ResponseEntity<List<Property>> getAllProperties(){
         return new ResponseEntity<>(propertyService.getAllProperties(),HttpStatus.OK);
     }
+
+    @PermitAll
+    @GetMapping("/get-agent-properties/{username}")
+    public ResponseEntity<List<Property>>  getPropertiesByAgent(@PathVariable String username){
+        List<Property> properties=propertyService.getAllPropertiesByUsername(username);
+
+        return new ResponseEntity<>(properties,HttpStatus.OK);
+    }
     @PermitAll
     @PostMapping("/add-property")
-    public ResponseEntity<Property> addProperty(@RequestBody Property newProperty){
+    public ResponseEntity<Property> addProperty(@RequestBody PropertyDto newPropertyDto){
         System.out.println("Inside controller");
-        propertyService.saveProperty(newProperty);
-        return new ResponseEntity<>(newProperty,HttpStatus.OK);
+        propertyService.saveProperty(newPropertyDto);
+        return ResponseEntity.ok(newPropertyDto.getProperty());
     }
     @PermitAll
     @DeleteMapping("/delete-property/{propertyId}")

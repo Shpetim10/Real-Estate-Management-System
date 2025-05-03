@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Property } from '../Entities/Property';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from './auth.service';
+import { User } from '../Entities/User';
 @Injectable({
   providedIn: 'root'
 })
 export class PropertyServiceService {
   private apiServerUrl = 'http://localhost:8080/agent/property-management';
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private authService: AuthService) { }
   
   propertyType: string[]=[
     'APARTAMENT',
@@ -38,13 +40,26 @@ export class PropertyServiceService {
     return foundFeature ? foundFeature.icon : undefined;
   }
   
-  public addProperty(property: Property): Observable<Property>{
-    return this.http.post<Property>(this.apiServerUrl+'/add-property',property,{withCredentials: true});
+  public addProperty(property: Property): Observable<Property> {
+    return this.authService.getLoggedUser().pipe(
+      switchMap((response) => {
+        property.agent = response;
+        return this.http.post<Property>(
+          `${this.apiServerUrl}/add-property`,
+          { agentUsername: response.username, property },
+          { withCredentials: true }
+        );
+      })
+    );
   }
-  
   public getAllProperties(){
     return this.http.get<Property[]>(this.apiServerUrl+"/get-properties",{withCredentials: true});
   }
+  
+  
+    public getAllPropertiesByAgent(agentUsername: string): Observable<Property[]> {
+      return this.http.get<Property[]>(`${this.apiServerUrl}/get-agent-properties/${agentUsername}`, { withCredentials: true });
+    }
   
   public deleteProperty(propertyId: number){
     return this.http.delete<Property>(this.apiServerUrl+"/delete-property/"+propertyId, {withCredentials: true});
@@ -53,4 +68,5 @@ export class PropertyServiceService {
   public updateProperty(oldProperty: Property, updatedPropety: Property){
     return this.http.put<Property>(this.apiServerUrl+"/update-property/"+oldProperty.propertyId,updatedPropety,{withCredentials: true});
   }
+  
 }
