@@ -27,7 +27,8 @@
                 "input": "public"
               },
                 "src/assets",
-                "src/assets/vendor/fonts"
+                "src/assets/vendor/fonts",
+                "Real-Estate-Management-System/src/app/dashboard/man-with-laptop-light.png"
               ],
               "styles": [
                 "@angular/material/prebuilt-themes/magenta-violet.css",

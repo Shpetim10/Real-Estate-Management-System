@@ -7,6 +7,7 @@ import { ClientMainViewComponent } from './client-main-view/client-main-view.com
 import { ClienCarouselPropertyComponent } from './clien-carousel-property/clien-carousel-property.component';
 import { ClientAgentViewComponent } from './client-agent-view/client-agent-view.component';
 import { ViewPropertyClientComponent } from './view-property-client/view-property-client.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const routes: Routes = [
     {path: "add-property", component: AddPropertyComponent},
@@ -16,6 +17,7 @@ export const routes: Routes = [
     {path: "horizon-home" , component: ClientMainViewComponent},
     {path: "carousel", component: ClientAgentViewComponent},
     {path: "client-property", component: ViewPropertyClientComponent},
+    {path: "dashboard", component: DashboardComponent},
     { path: '**', redirectTo: 'horizon-home', pathMatch: 'full' }
 ];
 
