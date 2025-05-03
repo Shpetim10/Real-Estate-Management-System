@@ -1,44 +1,74 @@
 <div class="container-xxl">
-    <div class="authentication-wrapper authentication-basic container-p-y">
-      <div class="authentication-inner">
-        <!-- Register -->
-        <div class="card">
-          <div class="card-body">
-            <!-- Logo -->
-            <div class="app-brand justify-content-center">
-              <a href="index.html" class="app-brand-link gap-2">
-                <span class="app-brand-logo demo">
-                  <i><img src="../../assets/img/favicon/Logo.png" alt="" height="50px" width="50px"></i>
-                
-                </span>
-                <span class="app-brand-text demo text-body fw-bolder">Homme Horizon</span>
-              </a>
-            </div>
-            <!-- /Logo -->
-            <h4 class="mb-2">Welcome to Homme Horizon Management! 👋<br></h4>
-            <p class="mb-4">Please sign-in to your account</p>
-
-            <form id="formAuthentication" class="mb-3">
-              <div class="mb-3">
-                <label for="email" class="form-label">Username</label>
-                <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus="" [(ngModel)]="username">
-              </div>
-              <div class="mb-3 form-password-toggle">
-                <div class="d-flex justify-content-between">
-                  <label class="form-label" for="password">Password</label>
-                </div>
-                <div class="input-group input-group-merge">
-                  <input type="password" id="password" class="form-control" name="password" placeholder="············" aria-describedby="password"  [(ngModel)]="password">
-                  <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                </div>
-              </div>
-              <div class="mb-3">
-                <button class="btn btn-primary d-grid w-100" type="submit" (click)="login()">Sign in</button>
-              </div>
-            </form>
+  <div class="authentication-wrapper authentication-basic container-p-y">
+    <div class="authentication-inner">
+      <!-- Login Card -->
+      <div class="card">
+        <div class="card-body">
+          <!-- Logo -->
+          <div class="app-brand justify-content-center">
+            <a href="index.html" class="app-brand-link gap-2">
+              <span class="app-brand-logo demo">
+                <i><img src="../../assets/img/favicon/Logo.png" alt="" height="50px" width="50px"></i>
+              </span>
+              <span class="app-brand-text demo text-body fw-bolder">Homme Horizon</span>
+            </a>
           </div>
+          <!-- /Logo -->
+          <h4 class="mb-2">Welcome to Homme Horizon Management! 👋</h4>
+          <p class="mb-4">Please sign in to your account</p>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mb-3">
+            <!-- Username -->
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input
+                type="text"
+                id="username"
+                class="form-control"
+                placeholder="Enter your username"
+                formControlName="username"
+                [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+              />
+              <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                <div *ngIf="f['username'].errors['required']">Username is required</div>
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3 form-password-toggle">
+              <div class="d-flex justify-content-between">
+                <label class="form-label" for="password">Password</label>
+              </div>
+              <div class="input-group input-group-merge">
+                <input
+                  type="password"
+                  id="password"
+                  class="form-control"
+                  placeholder="············"
+                  formControlName="password"
+                  [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+                />
+                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+              </div>
+              <div *ngIf="submitted && f['password'].errors" class="invalid-feedback d-block">
+                <div *ngIf="f['password'].errors['required']">Password is required</div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mb-3">
+              <button class="btn btn-primary d-grid w-100" [disabled]="loading" type="submit">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                Sign in
+              </button>
+            </div>
+
+            <!-- Error Message -->
+            <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+          </form>
         </div>
-        <!-- /Register -->
       </div>
+      <!-- /Login Card -->
     </div>
+  </div>
 </div>

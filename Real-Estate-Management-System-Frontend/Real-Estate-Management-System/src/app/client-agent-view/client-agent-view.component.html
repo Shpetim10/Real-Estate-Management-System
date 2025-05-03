@@ -4,7 +4,7 @@
       <div class="row">
         <div *ngFor="let agent of group" class="col-md-4">
           <div class="person">
-            <img [src]="agent.image" alt="Image" class="img-fluid" />
+            <img [src]="agent.imageUrl" class="img-fluid" />
             <div class="person-contents">
               <h2><a href="#">{{ agent.name }}</a></h2>
               <p><i class="bx bx-phone"></i> {{agent.phone}}</p>

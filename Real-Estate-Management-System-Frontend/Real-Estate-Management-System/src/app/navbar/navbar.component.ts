@@ -1,6 +1,5 @@
-import { LogInComponent } from '../log-in/log-in.component';
 import { AuthService } from './../Services/auth.service';
-import { Component, ViewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,11 +9,9 @@ import { Router } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  constructor(public auth: AuthService,public router: Router){}
+  constructor(public authService: AuthService,public router: Router){}
   
-  @ViewChild(LogInComponent) logIn!: LogInComponent;
-
-  logout() {
-    this.auth.logout().subscribe(() => {this.logIn.userInfo=''; this.router.navigate(['/log-in']) });
+  logout(): void {
+    this.authService.logout();
   }
 }

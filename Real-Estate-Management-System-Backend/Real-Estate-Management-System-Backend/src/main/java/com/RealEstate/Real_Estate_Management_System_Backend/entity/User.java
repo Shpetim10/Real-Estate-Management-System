@@ -25,6 +25,9 @@ public class User {
     @Column(nullable = false, unique = true)
     private String phone;
 
+    @Column(name= "image_url")
+    private String imageUrl;
+
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
@@ -35,7 +38,7 @@ public class User {
 
     }
 
-    public User(Long id, String name, String surname, String username, String password, String email, String phone, List<String> roles, List<Property> properties) {
+    public User(Long id, String name, String surname, String username, String password, String email, String phone, String imageUrl, List<String> roles, List<Property> properties) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -43,6 +46,7 @@ public class User {
         this.password = password;
         this.email = email;
         this.phone = phone;
+        this.imageUrl=imageUrl;
         this.roles = roles;
         this.properties = properties;
     }
@@ -125,6 +129,14 @@ public class User {
 
     public boolean hasRole(String role) {
         return roles.contains(role);
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public boolean hasAnyRole(String... roles) {

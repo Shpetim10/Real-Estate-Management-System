@@ -4,13 +4,16 @@ import com.RealEstate.Real_Estate_Management_System_Backend.entity.Client;
 import com.RealEstate.Real_Estate_Management_System_Backend.entity.EmailRequest;
 import com.RealEstate.Real_Estate_Management_System_Backend.entity.Property;
 import com.RealEstate.Real_Estate_Management_System_Backend.service.EmailService;
+import jakarta.annotation.security.PermitAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping("/email")
@@ -18,6 +21,7 @@ public class EmailController {
     @Autowired
     private EmailService emailService;
 
+    @PermitAll
     @PostMapping("/send")
     public ResponseEntity<String> sendEmail(@RequestBody EmailRequest emailRequest) {
         emailService.sendSimpleEmail(

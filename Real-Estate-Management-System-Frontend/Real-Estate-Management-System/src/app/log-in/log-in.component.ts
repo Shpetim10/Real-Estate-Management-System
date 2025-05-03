@@ -1,44 +1,70 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../Services/auth.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-log-in',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,FormsModule,ReactiveFormsModule],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.css'
 })
-export class LogInComponent {
-  username = '';
-  password = '';
-  userInfo = '';
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
+  loading = false;
+  submitted = false;
   error = '';
+  returnUrl: string = '/dashboard';
 
-  constructor(private auth: AuthService,private router: Router) {
-    this.checkLogin();
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
+  ) {
+    // Redirect to home if already logged in
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
-  login() {
-    this.auth.login(this.username, this.password).subscribe({
-      next: () => {this.checkLogin(); this.router.navigate(["/add-user"])},
-      error: () => {this.error = 'Login failed'; alert(this.error)}
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
+
+    // Get return URL from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
   }
 
-  logout() {
-    this.auth.logout().subscribe(() => this.userInfo = '');
-  }
+  get f() { return this.loginForm.controls; }
 
-  checkLogin() {
-    this.auth.getCurrentUser().subscribe({
-      next: data => {
-      this.userInfo = data; 
-      this.error = '';
-      
-      },
-      error: () => this.userInfo = ''
-    });
+  onSubmit(): void {
+    this.submitted = true;
+
+    // Stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.authService.login({
+      username: this.f['username'].value,
+      password: this.f['password'].value
+    })
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          // Navigation to return URL or home page
+          this.router.navigate([this.returnUrl]);
+        },
+        error: error => {
+          this.error = error.error?.message || 'Invalid credentials';
+          this.loading = false;
+        }
+      });
   }
 }

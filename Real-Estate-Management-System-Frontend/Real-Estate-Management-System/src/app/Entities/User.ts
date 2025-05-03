@@ -7,6 +7,7 @@ export class User {
     password: string;
     email: string;
     phone: string;
+    imageUrl: string;
     roles: string[];
     properties: Property[];
   
@@ -18,6 +19,7 @@ export class User {
       password: string,
       email: string,
       phone: string,
+      imageUrl: string,
       roles: string[],
       properties: Property[]
     ) {
@@ -28,6 +30,7 @@ export class User {
       this.password = password;
       this.email = email;
       this.phone = phone;
+      this.imageUrl= imageUrl;
       this.roles = roles;
       this.properties = properties;
     }
