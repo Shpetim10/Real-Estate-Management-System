@@ -1,0 +1,67 @@
+<mat-dialog-content class="dialog-content" style="background-color: var(--secondary); color: white;">
+    <form #editUserForm="ngForm" (ngSubmit)="onSave(editUserForm.value)">
+      <h4 class="text-center text-primary mb-4"><i class="fa fa-user-edit me-2"></i> Update User</h4>
+  
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="name" class="form-label">First Name</label>
+          <input type="text" id="name" name="name" class="form-control"
+                 [(ngModel)]="data.oldUser.name" required />
+        </div>
+  
+        <div class="col-md-6 mb-3">
+          <label for="surname" class="form-label">Last Name</label>
+          <input type="text" id="surname" name="surname" class="form-control"
+                 [(ngModel)]="data.oldUser.surname" required />
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" name="email" class="form-control"
+                 [(ngModel)]="data.oldUser.email" required />
+        </div>
+  
+        <div class="col-md-6 mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="text" id="phone" name="phone" class="form-control"
+                 [(ngModel)]="data.oldUser.phone" required />
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" id="username" name="username" class="form-control"
+                 [(ngModel)]="data.oldUser.username" required />
+        </div>
+  
+        <div class="col-md-6 mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" name="password" class="form-control"
+                 [(ngModel)]="data.oldUser.password" required />
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="imageUrl" class="form-label">Photo URL</label>
+          <input type="text" id="imageUrl" name="imageUrl" class="form-control"
+                 [(ngModel)]="data.oldUser.imageUrl" />
+        </div>
+  
+        <div class="col-md-6 mb-3">
+          <label for="roles" class="form-label">User Roles</label>
+          <select class="form-select" id="roles" name="roles" [(ngModel)]="data.oldUser.roles" required>
+            <option *ngFor="let r of userService.roles" [value]="r">{{ r }}</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions class="dialog-footer justify-content-end" style="background-color: var(--secondary);">
+    <button mat-button color="warn" (click)="onCancel()">Cancel</button>
+    <button mat-button color="primary" (click)="onSave(editUserForm.value)">Save Changes</button>
+  </mat-dialog-actions>

@@ -1,0 +1,51 @@
+<mat-dialog-content class="dialog-content" style="background-color: var(--secondary); color: white;">
+    <div class="container py-3">
+      <h4 class="mb-4 text-center title" style="color: var(--primary);">
+        <i class="bi bi-person-circle me-2"></i> User Details
+      </h4>
+  
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong><i class="bi bi-person"></i> First Name:</strong>
+          <p>{{ data.user.name }}</p>
+        </div>
+        <div class="col-md-6">
+          <strong><i class="bi bi-person"></i> Last Name:</strong>
+          <p>{{ data.user.surname }}</p>
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong><i class="bi bi-envelope"></i> Email:</strong>
+          <p>{{ data.user.email }}</p>
+        </div>
+        <div class="col-md-6">
+          <strong><i class="bi bi-phone"></i> Phone:</strong>
+          <p>{{ data.user.phone }}</p>
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong><i class="bi bi-person-badge"></i> Username:</strong>
+          <p>{{ data.user.username }}</p>
+        </div>
+        <div class="col-md-6">
+          <strong><i class="bi bi-shield-lock"></i> Role(s):</strong>
+          <p>{{ data.user.roles.join(', ') }}</p>
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong><i class="bi bi-image"></i> Profile Photo:</strong><br>
+          <img [src]="data.user.imageUrl" alt="User Photo" class="img-fluid rounded mt-2 border" style="max-height: 150px;">
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions class="dialog-footer justify-content-end" style="background-color: var(--secondary)">
+    <button mat-button color="primary" (click)="onClose()">Close</button>
+  </mat-dialog-actions>

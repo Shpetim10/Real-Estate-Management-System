@@ -34,7 +34,7 @@ public class UserService {
     public void updateUser(long id, User user){
         User userFromDB = userRepository.findById(id).get();
         if (userFromDB != null) {
-            if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+            if (user.getPassword() != null && !user.getPassword().isEmpty() && !user.getPassword().equals(userFromDB.getPassword())) {
                 userFromDB.setPassword(passwordEncoder.encode(user.getPassword()));
             }
             userFromDB.setUsername(user.getUsername());
