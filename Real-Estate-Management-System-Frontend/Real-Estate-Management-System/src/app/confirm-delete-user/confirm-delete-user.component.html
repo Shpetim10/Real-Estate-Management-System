@@ -1,13 +1,15 @@
-<div class="modal-header" style="background-color: var(--dark); color: var(--primary);">
-    <h5 class="modal-title" style="color: var(--primary);">Confirm User Deletion</h5>
-    <button type="button" class="btn-close" aria-label="Close" (click)="onCancel()" style="color: var(--primary);"></button>
+<div class="modal-header" style="background-color: #23272b; color: #e791c6;">
+    <h5 class="modal-title" style="color: #e791c6;">Confirm User Deletion</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="onCancel()" style="color: #e791c6;"></button>
 </div>
 
-<div class="modal-body text-center" style="background-color: var(--secondary);">
-    <p class="fw-bold" style="color: white;">Are you sure you want to delete user <span style="color: var(--primary);">#{{ data.userId }}</span>?</p>
+<div class="modal-body text-center" style="background-color: #fff;">
+    <p class="fw-bold" style="color: #e791c6;">
+        Are you sure you want to delete user <span style="color: #EB1616;">#{{ data.userId }}</span>?
+    </p>
 </div>
 
-<div class="modal-footer d-flex justify-content-between" style="background-color: var(--dark);">
-    <button mat-button class="btn btn-secondary" style="background-color: var(--secondary); color: white;" (click)="onCancel()">Cancel</button>
-    <button mat-raised-button class="btn btn-danger" style="background-color: var(--primary); color: white;" (click)="onConfirm()">Delete</button>
+<div class="modal-footer d-flex justify-content-between" style="background-color: #23272b;">
+    <button mat-button class="btn btn-secondary" style="background-color: #e791c6; color: #23272b;" (click)="onCancel()">Cancel</button>
+    <button mat-raised-button class="btn btn-danger" style="background-color: #EB1616; color: #fff;" (click)="onConfirm()">Delete</button>
 </div>

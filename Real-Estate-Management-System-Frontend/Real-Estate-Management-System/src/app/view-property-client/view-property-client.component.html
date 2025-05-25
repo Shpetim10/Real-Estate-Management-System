@@ -27,8 +27,9 @@
             </ul></div>
     </div>
 
-<nav class="site-nav">
-    <div class="container">
+<header>
+  <nav class="site-nav">
+      <div class="container">
         <div class="menu-bg-wrap">
           <div class="site-navigation">
             <a [routerLink]="['/horizon-home']" routerLinkActive="router-link-active" class="logo m-0 float-start">Horizon Home</a>
@@ -45,6 +46,8 @@
         </div>
       </div>
     </nav>
+</header>
+
 
 
 
@@ -146,8 +149,12 @@
               
               
               <!-- Client Information -->
-              <div class="mt-5 agent-box border rounded p-4 shadow-sm bg-light">
+              <div class="mt-5 agent-box border rounded p-4 shadow-sm bg-light" *ngIf="property.status=='SOLD'">
+                <h1 class="mb-3 text-primary" color="red">SOLD!</h1>
+              </div>
+              <div class="mt-5 agent-box border rounded p-4 shadow-sm bg-light" *ngIf="property.status!='SOLD'">
                 <h5 class="mb-3 text-primary"><i class="bx bx-user-circle"></i> Client Information</h5>
+                <h1 class="mb-3 text-primary" *ngIf="property.status=='SOLD'">SOLD!</h1>
                 <form #clientForm="ngForm">
                   <div class="row g-3">
                     <div class="col-md-6">

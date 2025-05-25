@@ -41,19 +41,21 @@ export class PropertyServiceService {
   }
   
   public addProperty(property: Property): Observable<Property> {
-    return this.authService.getLoggedUser().pipe(
-      switchMap((response) => {
-        return this.http.post<Property>(
-          `${this.apiServerUrl}/add-property`,
-          {
-            currentUser: response.username,  
-            property: property
-          },
-          { withCredentials: true }
-        );
-      })
-    );
-  }
+  return this.authService.getLoggedUser().pipe(
+    switchMap((response) => {
+      // agentUsername: for agent, use their username; for admin, use selected
+      const agentUsername = property.agent?.username || response.username;
+      return this.http.post<Property>(
+        `${this.apiServerUrl}/add-property`,
+        {
+          agentUsername: agentUsername,
+          property: property
+        },
+        { withCredentials: true }
+      );
+    })
+  );
+}
   
   public getAllProperties(){
     return this.http.get<Property[]>(this.apiServerUrl+"/get-properties",{withCredentials: true});

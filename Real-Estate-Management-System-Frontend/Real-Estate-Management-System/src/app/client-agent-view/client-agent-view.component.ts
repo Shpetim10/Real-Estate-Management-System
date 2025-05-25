@@ -11,7 +11,6 @@ import { User } from '../Entities/User';
 export class ClientAgentViewComponent implements OnInit {
   agents: User[]=[];
 
-  // Group agents into sets of 3 for carousel slides
   agentGroups: any[] = [];
   
   constructor(private userService: UserService) {
@@ -22,7 +21,7 @@ export class ClientAgentViewComponent implements OnInit {
       next: (response) => {
         if (response && Array.isArray(response)) {
           this.agents = response.filter((agent) => agent.roles?.includes('AGENT'));
-          this.agentGroups = this.chunkArray(this.agents, 3); // ✅ Chunk after data is set
+          this.agentGroups = this.chunkArray(this.agents, 3);
         } else {
           console.error('Unexpected API response:', response);
         }

@@ -13,16 +13,30 @@ import { NavbarComponent } from "../navbar/navbar.component";
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent {
+  errorMessage: string = '';
+
   constructor(public userService: UserService) {}
 
   addUser(newUser: NgForm) {
-    this.userService.addUser(newUser.value).subscribe({
-      next: (response) => {
-        alert("User was added successfully!");
-        console.log(newUser.value);
-        newUser.resetForm();
-      },
-      error: (error) => alert("Error!")
+    this.errorMessage = '';
+    const userData = { ...newUser.value };
+
+    // Check for duplicate username
+    this.userService.getAllUsers().subscribe((users) => {
+      const duplicate = users.some(u => u.username === userData.username);
+      if (duplicate) {
+        this.errorMessage = "A user with this username already exists.";
+        return;
+      }
+
+      this.userService.addUser(userData).subscribe({
+        next: (response) => {
+          this.errorMessage = "User was added successfully!";
+          console.log(newUser.value);
+          newUser.resetForm();
+        },
+        error: (error) => this.errorMessage = "Error!"
+      });
     });
   }
 }

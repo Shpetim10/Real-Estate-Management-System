@@ -17,6 +17,9 @@
                 <small class="text-muted float-end"><i class="bx bx-user-circle"></i> User Information</small>
               </div>
               <div class="card-body">
+                <div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert" style="color: #EB1616; background:white; border: 1px solid #EB1616;">
+                  {{ errorMessage }}
+                </div>
                 <form #userForm="ngForm">
                   <!-- First Row: Name + Surname -->
                   <div class="row">

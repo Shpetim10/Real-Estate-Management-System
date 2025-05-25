@@ -1,25 +1,51 @@
-import { CommonModule} from '@angular/common';
+ import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogActions, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { PropertyServiceService } from '../Services/property-service.service';
 import { Property } from '../Entities/Property';
-import { FormsModule ,NgForm} from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
+
 @Component({
   selector: 'app-edit-property',
-  imports: [MatDialogModule,MatDialogActions, CommonModule, FormsModule,MatButtonModule],
+  imports: [MatDialogModule, MatDialogActions, CommonModule, FormsModule, MatButtonModule],
   templateUrl: './edit-property.component.html',
-  styleUrl: './edit-property.component.css'
+  styleUrls: ['./edit-property.component.css']
 })
 export class EditPropertyComponent {
-  constructor(public propertyService: PropertyServiceService,
+  errorMessage: string = '';
+
+  constructor(
+    public propertyService: PropertyServiceService,
     private dialogRef: MatDialogRef<EditPropertyComponent>,
-    @Inject (MAT_DIALOG_DATA) public data: {property: Property}){}
-    
-    onCancel(){
-      this.dialogRef.close(null);
+    @Inject(MAT_DIALOG_DATA) public data: { property: Property }
+  ) {}
+
+  onCancel() {
+    this.dialogRef.close(null);
+  }
+
+  updateProperty(editForm: NgForm) {
+    this.errorMessage = '';
+    const propertyData = { ...editForm.value, propertyId: this.data.property.propertyId };
+
+    if (!propertyData.governIssuedId || !propertyData.address || !propertyData.city || !propertyData.country) {
+      this.errorMessage = "Please fill in all required fields.";
+      return;
     }
-    updateProperty(updated: NgForm){
-      this.dialogRef.close(updated.value);
-    }
+
+    this.propertyService.getAllProperties().subscribe((properties) => {
+      const duplicate = properties.some(
+        (p) =>
+          (propertyData.propertyId && p.propertyId == propertyData.propertyId && p.propertyId != this.data.property.propertyId) ||
+          (propertyData.governIssuedId && p.governIssuedId === propertyData.governIssuedId && p.propertyId != this.data.property.propertyId)
+      );
+      if (duplicate) {
+        this.errorMessage = "A property with the same Property ID or Government Issued ID already exists.";
+        return;
+      }
+      
+      this.dialogRef.close(propertyData);
+    });
+  }
 }

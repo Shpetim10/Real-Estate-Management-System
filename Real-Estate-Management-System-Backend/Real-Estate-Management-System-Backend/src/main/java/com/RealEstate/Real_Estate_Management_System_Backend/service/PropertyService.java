@@ -37,19 +37,27 @@ public class PropertyService {
     }
 
     public Property saveProperty(PropertyDto propertyDto) {
-        Optional<User> optionalAgent = userRepository.findByUsername(propertyDto.getCurrentUser());
+        // Check for duplicate propertyId or governIssuedId
+        Property newProperty = propertyDto.getProperty();
 
+        boolean duplicate = propertyRepository.existsByPropertyId(newProperty.getPropertyId()) ||
+                propertyRepository.existsByGovernIssuedId(newProperty.getGovernIssuedId());
+
+        if (duplicate) {
+            throw new IllegalArgumentException("A property with the same Property ID or Government Issued ID already exists.");
+        }
+
+        Optional<User> optionalAgent = userRepository.findByUsername(propertyDto.getAgentUsername());
         if (!optionalAgent.isPresent()) {
-            throw new UsernameNotFoundException("Agent not found with username: " + propertyDto.getCurrentUser());
+            throw new UsernameNotFoundException("Agent not found with username: " + propertyDto.getAgentUsername());
         }
 
         User agent = optionalAgent.get();
-        propertyDto.getProperty().setAgent(agent);
-        agent.getProperties().add(propertyDto.getProperty());
+        newProperty.setAgent(agent);
+        agent.getProperties().add(newProperty);
 
-        return propertyRepository.save(propertyDto.getProperty());
+        return propertyRepository.save(newProperty);
     }
-
 
     public Property deleteProperty(Long propertyId){
         Optional<Property> toDelete=propertyRepository.findById(propertyId);
@@ -67,6 +75,13 @@ public class PropertyService {
 
     public void updateProperty(Long propertyId, Property updatedProperty){
         Property property =this.getPropertyById(propertyId);
+
+        boolean duplicateGovernId = propertyRepository.existsByGovernIssuedIdAndPropertyIdNot(
+                updatedProperty.getGovernIssuedId(), propertyId
+        );
+        if (duplicateGovernId) {
+            throw new IllegalArgumentException("A property with the same Government Issued ID already exists.");
+        }
 
         property.setBathrooms(updatedProperty.getBathrooms());
         property.setAddress(updatedProperty.getAddress());

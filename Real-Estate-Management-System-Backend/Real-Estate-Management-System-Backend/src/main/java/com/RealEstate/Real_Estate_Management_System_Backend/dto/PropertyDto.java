@@ -12,7 +12,7 @@ public class PropertyDto {
         this.property = property;
     }
 
-    public String getCurrentUser() {
+    public String getAgentUsername() {
         return agentUsername;
     }
 

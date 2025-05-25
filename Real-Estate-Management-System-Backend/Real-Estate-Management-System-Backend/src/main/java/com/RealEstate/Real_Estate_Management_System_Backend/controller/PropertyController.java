@@ -43,10 +43,17 @@ public class PropertyController {
     }
     @PermitAll
     @PostMapping("/add-property")
-    public ResponseEntity<Property> addProperty(@RequestBody PropertyDto newPropertyDto){
-        System.out.println("Inside controller");
-        propertyService.saveProperty(newPropertyDto);
-        return ResponseEntity.ok(newPropertyDto.getProperty());
+    public ResponseEntity<?> addProperty(@RequestBody PropertyDto newPropertyDto) {
+        try {
+            Property savedProperty = propertyService.saveProperty(newPropertyDto);
+            return ResponseEntity.ok(savedProperty);
+        } catch (IllegalArgumentException e) {
+            // Duplicate found
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            // Other errors
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error saving property!");
+        }
     }
     @PermitAll
     @DeleteMapping("/delete-property/{propertyId}")
@@ -57,7 +64,12 @@ public class PropertyController {
     @PermitAll
     @PutMapping("/update-property/{propertyId}")
     public ResponseEntity<Property> updateProperty(@PathVariable long propertyId, @RequestBody Property updatedUser){
-        propertyService.updateProperty(propertyId,updatedUser);
+        try{
+            propertyService.updateProperty(propertyId,updatedUser);
+        }catch(IllegalArgumentException ex){
+            return ResponseEntity.badRequest().body(null);
+        }
+
         return new ResponseEntity<>(updatedUser,HttpStatus.OK);
     }
 }

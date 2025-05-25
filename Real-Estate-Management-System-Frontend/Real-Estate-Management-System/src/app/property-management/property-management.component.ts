@@ -76,24 +76,27 @@ export class PropertyManagementComponent {
   }
   
   updateProperty(oldProperty: Property){
-    let toEdit: Property=JSON.parse(JSON.stringify(oldProperty));
-    
-    const dialog=this.dialog.open(EditPropertyComponent,{
-      width: '550px',
-      data: {
-        property: toEdit
-      }
-    })
-    
-    dialog.afterClosed().subscribe((response)=>
-      {
-        if(response!==null){
-          this.propertyService.updateProperty(toEdit,response).subscribe({
-            next: (response)=>{if (this.agent) { let user: User = this.agent; this.getAllProperties(user); }},
-            error: (error)=> console.error(error)
-          }); 
-        }
-      }
-    )
-  } 
+  let toEdit: Property = JSON.parse(JSON.stringify(oldProperty));
+
+  const dialog = this.dialog.open(EditPropertyComponent, {
+    width: '550px',
+    data: {
+      property: toEdit
+    }
+  });
+
+  dialog.afterClosed().subscribe((response) => {
+    if (response !== null && response !== undefined) {
+      this.propertyService.updateProperty(toEdit, response).subscribe({
+        next: () => {
+          if (this.agent) {
+            let user: User = this.agent;
+            this.getAllProperties(user);
+          }
+        },
+        error: (error) => console.error(error)
+      });
+    }
+  });
+}
 }

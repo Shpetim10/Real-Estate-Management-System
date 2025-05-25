@@ -30,6 +30,8 @@ public class Property {
     private List<Features> features;
 
     private PropertyType propertyType;
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     private double price;

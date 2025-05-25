@@ -24,7 +24,7 @@
             </div>
   
             <!-- Profile Report Card -->
-            <div class="col-lg-4 mb-4" *ngIf="this.loggedUser?.roles?.includes('ADMIN')">
+            <div class="col-lg-4 mb-4" *ngIf="loggedUser?.roles?.includes('ADMIN')">
               <div class="card h-100">
                 <div class="card-body">
                   <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
@@ -35,7 +35,7 @@
                       </div>
                       <div class="mt-sm-auto">
                         <small class="text-success text-nowrap fw-semibold"><i class="bx bx-chevron-up"></i></small>
-                        <h3 class="mb-0">$ {{this.getProfit()}}</h3>
+                        <h3 class="mb-0">$ {{getProfit()}}</h3>
                       </div>
                     </div>
                     <div id="profileReportChart" style="min-height: 80px;"></div>

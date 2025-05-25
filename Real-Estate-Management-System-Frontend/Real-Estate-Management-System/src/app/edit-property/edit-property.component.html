@@ -1,90 +1,96 @@
-<mat-dialog-content class="dialog-content" style="background-color: var(--bs-gray-dark); color: var(--bs-white);">
+<header>
+  <div class="card-header d-flex justify-content-between align-items-center mb-4" style="background: #23272b; border-radius: 0.5rem;">
+    <h2 class="mb-0" style="color: #e791c6;">
+      <i class="bx bx-edit-alt"></i> Edit Property
+    </h2>
+  </div>
+</header>
+<mat-dialog-content class="dialog-content" style="background-color: #343a40; color: #f8f9fa; border-radius: 0.5rem;">
   <div class="container py-3">
-    <div class="card-header d-flex justify-content-between align-items-center mb-4">
-      <h2 class="mb-0" style="color: var(--bs-primary);">
-        <i class="bx bx-edit-alt"></i> Edit Property
-      </h2>
+  
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert" style="color: #EB1616; background: #23272b; border: 1px solid #EB1616;">
+      {{ errorMessage }}
     </div>
 
     <form #editForm="ngForm">
       <div class="row mb-3">
         <div class="col-md-6">
-          <label for="propertyId"><i class="bx bx-hash"></i> Property ID</label>
-          <input type="text" id="propertyId" name="propertyId" class="form-control text-white bg-transparent border border-white"
+          <label for="propertyId" class="form-label" style="color: #e791c6;"><i class="bx bx-hash"></i> Property ID</label>
+          <input type="text" id="propertyId" name="propertyId" class="form-control bg-dark text-white border-primary"
             [(ngModel)]="data.property.propertyId">
         </div>
 
         <div class="col-md-6">
-          <label for="governIssuedId"><i class="bx bx-id-card"></i> Government Issued ID</label>
-          <input type="text" id="governIssuedId" name="governIssuedId" class="form-control text-white bg-transparent border border-white"
+          <label for="governIssuedId" class="form-label" style="color: #e791c6;"><i class="bx bx-id-card"></i> Government Issued ID</label>
+          <input type="text" id="governIssuedId" name="governIssuedId" class="form-control bg-dark text-white border-primary"
             [(ngModel)]="data.property.governIssuedId">
         </div>
       </div>
 
       <div class="row mb-3">
         <div class="col-md-6">
-          <label for="propertyType"><i class="bx bx-building-house"></i> Property Type</label>
-          <input type="text" id="propertyType" name="propertyType" class="form-control text-white bg-transparent border border-white"
+          <label for="propertyType" class="form-label" style="color: #e791c6;"><i class="bx bx-building-house"></i> Property Type</label>
+          <input type="text" id="propertyType" name="propertyType" class="form-control bg-dark text-white border-primary"
             [(ngModel)]="data.property.propertyType">
         </div>
 
         <div class="col-md-6">
-          <label for="address"><i class="bx bx-current-location"></i> Address</label>
-          <input type="text" id="address" name="address" class="form-control text-white bg-transparent border border-white"
+          <label for="address" class="form-label" style="color: #e791c6;"><i class="bx bx-current-location"></i> Address</label>
+          <input type="text" id="address" name="address" class="form-control bg-dark text-white border-primary"
             [(ngModel)]="data.property.address">
         </div>
       </div>
 
       <div class="row mb-3">
         <div class="col-md-4">
-          <label for="city"><i class="bx bx-map"></i> City</label>
-          <input type="text" id="city" name="city" class="form-control text-white bg-transparent border border-white"
+          <label for="city" class="form-label" style="color: #e791c6;"><i class="bx bx-map"></i> City</label>
+          <input type="text" id="city" name="city" class="form-control bg-dark text-white border-primary"
             [(ngModel)]="data.property.city">
         </div>
 
         <div class="col-md-4">
-          <label for="country"><i class="bx bx-flag"></i> Country</label>
-          <input type="text" id="country" name="country" class="form-control text-white bg-transparent border border-white"
+          <label for="country" class="form-label" style="color: #e791c6;"><i class="bx bx-flag"></i> Country</label>
+          <input type="text" id="country" name="country" class="form-control bg-dark text-white border-primary"
             [(ngModel)]="data.property.country">
         </div>
 
         <div class="col-md-4">
-          <label for="floor"><i class="bx bx-building"></i> Floor</label>
-          <input type="text" id="floor" name="floor" class="form-control text-white bg-transparent border border-white"
+          <label for="floor" class="form-label" style="color: #e791c6;"><i class="bx bx-building"></i> Floor</label>
+          <input type="text" id="floor" name="floor" class="form-control bg-dark text-white border-primary"
             [(ngModel)]="data.property.floor">
         </div>
       </div>
 
       <div class="row mb-3">
         <div class="col-md-4">
-          <label for="bedrooms"><i class="bx bx-bed"></i> Bedrooms</label>
-          <input type="number" id="bedrooms" name="bedrooms" class="form-control text-white bg-transparent border border-white"
+          <label for="bedrooms" class="form-label" style="color: #e791c6;"><i class="bx bx-bed"></i> Bedrooms</label>
+          <input type="number" id="bedrooms" name="bedrooms" class="form-control bg-dark text-white border-primary"
             [(ngModel)]="data.property.bedrooms">
         </div>
 
         <div class="col-md-4">
-          <label for="bathrooms"><i class="bx bx-bath"></i> Bathrooms</label>
-          <input type="number" id="bathrooms" name="bathrooms" class="form-control text-white bg-transparent border border-white"
+          <label for="bathrooms" class="form-label" style="color: #e791c6;"><i class="bx bx-bath"></i> Bathrooms</label>
+          <input type="number" id="bathrooms" name="bathrooms" class="form-control bg-dark text-white border-primary"
             [(ngModel)]="data.property.bathrooms">
         </div>
 
         <div class="col-md-4">
-          <label for="area"><i class="bx bx-fullscreen"></i> Area (sq ft)</label>
-          <input type="number" id="area" name="area" class="form-control text-white bg-transparent border border-white"
+          <label for="area" class="form-label" style="color: #e791c6;"><i class="bx bx-fullscreen"></i> Area (sq ft)</label>
+          <input type="number" id="area" name="area" class="form-control bg-dark text-white border-primary"
             [(ngModel)]="data.property.area">
         </div>
       </div>
 
       <div class="row mb-3">
         <div class="col-md-6">
-          <label for="price"><i class="bx bx-dollar"></i> Price</label>
-          <input type="number" id="price" name="price" class="form-control text-white bg-transparent border border-white"
+          <label for="price" class="form-label" style="color: #e791c6;"><i class="bx bx-dollar"></i> Price</label>
+          <input type="number" id="price" name="price" class="form-control bg-dark text-white border-primary"
             [(ngModel)]="data.property.price">
         </div>
 
         <div class="mb-3">
-          <label for="status"><i class="bx bx-badge-check"></i> Status</label>
-          <select id="status" name="status" class="form-select text-white bg-transparent border border-white" 
+          <label for="status" class="form-label" style="color: #e791c6;"><i class="bx bx-badge-check"></i> Status</label>
+          <select id="status" name="status" class="form-select bg-dark text-white border-primary" 
             [(ngModel)]="data.property.status">
             <option *ngFor="let status of propertyService.propertyStatus" [value]="status">{{ status }}</option>
           </select>
@@ -92,40 +98,40 @@
       </div>
 
       <div class="mb-3">
-        <label for="features"><i class="bx bx-star"></i> Features</label>
-        <select id="features" name="features" class="form-select text-white bg-transparent border border-white" multiple
+        <label for="features" class="form-label" style="color: #e791c6;"><i class="bx bx-star"></i> Features</label>
+        <select id="features" name="features" class="form-select bg-dark text-white border-primary" multiple
           [(ngModel)]="data.property.features">
           <option *ngFor="let feature of propertyService.features" [value]="feature.name">{{ feature.name }}</option>
         </select>
       </div>
 
       <div class="mb-3">
-        <label for="description"><i class="bx bx-file"></i> Description</label>
+        <label for="description" class="form-label" style="color: #e791c6;"><i class="bx bx-file"></i> Description</label>
         <textarea id="description" name="description" rows="3"
-          class="form-control text-white bg-transparent border border-white"
+          class="form-control bg-dark text-white border-primary"
           [(ngModel)]="data.property.description"></textarea>
       </div>
 
       <div class="mb-3">
-        <label for="imageUrl"><i class="bx bx-image"></i> Photo URL</label>
-        <input type="text" id="imageUrl" name="imageUrl" class="form-control text-white bg-transparent border border-white"
+        <label for="imageUrl" class="form-label" style="color: #e791c6;"><i class="bx bx-image"></i> Photo URL</label>
+        <input type="text" id="imageUrl" name="imageUrl" class="form-control bg-dark text-white border-primary"
           [(ngModel)]="data.property.imageUrl">
       </div>
 
       <div class="mb-3 text-center">
         <img [src]="data.property.imageUrl" *ngIf="data.property.imageUrl"
-          alt="Preview" class="img-fluid rounded border"
-          style="max-height: 200px; box-shadow: 0 0 10px 3px var(--bs-dark);">
+          alt="Preview" class="img-fluid rounded border border-primary"
+          style="max-height: 200px; box-shadow: 0 0 10px 3px #23272b;">
       </div>
     </form>
   </div>
 </mat-dialog-content>
 
-<mat-dialog-actions class="dialog-footer justify-content-end px-3 py-2" style="background-color: var(--bs-gray-dark); border-top: 1px solid var(--bs-gray-50);">
-  <button mat-button class="btn btn-secondary me-2" style="background-color: var(--bs-dark); color: var(--bs-white);" (click)="onCancel()">
+<mat-dialog-actions class="dialog-footer justify-content-end px-3 py-2" style="background-color: #343a40; border-top: 1px solid #495057;">
+  <button mat-button class="btn btn-secondary me-2" style="background-color: #23272b; color: #f8f9fa;" (click)="onCancel()">
     <i class="bx bx-x"></i> Cancel
   </button>
-  <button mat-raised-button color="primary" (click)="updateProperty(editForm)">
+  <button mat-button color="primary" (click)="updateProperty(editForm)">
     <i class="bx bx-save"></i> Save Changes
   </button>
 </mat-dialog-actions>

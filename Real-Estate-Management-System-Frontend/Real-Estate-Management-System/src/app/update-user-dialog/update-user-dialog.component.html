@@ -1,16 +1,27 @@
-<mat-dialog-content class="dialog-content" style="background-color: var(--secondary); color: white;">
-    <form #editUserForm="ngForm" (ngSubmit)="onSave(editUserForm.value)">
-      <h4 class="text-center text-primary mb-4"><i class="fa fa-user-edit me-2"></i> Update User</h4>
+<header>
+  <div class="card-header d-flex justify-content-between align-items-center mb-4" style="border-radius: 0.5rem;">
+    <h2 class="mb-0" style="color: #e791c6;">
+      <i class="bx bx-edit-alt"></i> Update User
+    </h2>
+  </div>
+</header>
+<mat-dialog-content class="dialog-content" style="background-color: #343a40; color: #f8f9fa; border-radius: 0.5rem;">
+  <!-- Error message block -->
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert" style="color: #EB1616; background: #23272b; border: 1px solid #EB1616;">
+    {{ errorMessage }}
+  </div>
+
+  <form #editUserForm="ngForm" (ngSubmit)="onSave(editUserForm.value)">
   
       <div class="row">
         <div class="col-md-6 mb-3">
-          <label for="name" class="form-label">First Name</label>
+          <label for="name" class="form-label" style="color: #e791c6;">First Name</label>
           <input type="text" id="name" name="name" class="form-control"
                  [(ngModel)]="data.oldUser.name" required />
         </div>
   
         <div class="col-md-6 mb-3">
-          <label for="surname" class="form-label">Last Name</label>
+          <label for="surname" class="form-label" style="color: #e791c6;">Last Name</label>
           <input type="text" id="surname" name="surname" class="form-control"
                  [(ngModel)]="data.oldUser.surname" required />
         </div>
@@ -18,13 +29,13 @@
   
       <div class="row">
         <div class="col-md-6 mb-3">
-          <label for="email" class="form-label">Email</label>
+          <label for="email" class="form-label" style="color: #e791c6;">Email</label>
           <input type="email" id="email" name="email" class="form-control"
                  [(ngModel)]="data.oldUser.email" required />
         </div>
   
         <div class="col-md-6 mb-3">
-          <label for="phone" class="form-label">Phone</label>
+          <label for="phone" class="form-label" style="color: #e791c6;">Phone</label>
           <input type="text" id="phone" name="phone" class="form-control"
                  [(ngModel)]="data.oldUser.phone" required />
         </div>
@@ -32,13 +43,13 @@
   
       <div class="row">
         <div class="col-md-6 mb-3">
-          <label for="username" class="form-label">Username</label>
+          <label for="username" class="form-label" style="color: #e791c6;">Username</label>
           <input type="text" id="username" name="username" class="form-control"
                  [(ngModel)]="data.oldUser.username" required />
         </div>
   
         <div class="col-md-6 mb-3">
-          <label for="password" class="form-label">Password</label>
+          <label for="password" class="form-label" style="color: #e791c6;">Password</label>
           <input type="password" id="password" name="password" class="form-control"
                  [(ngModel)]="data.oldUser.password" required />
         </div>
@@ -46,13 +57,13 @@
   
       <div class="row">
         <div class="col-md-6 mb-3">
-          <label for="imageUrl" class="form-label">Photo URL</label>
+          <label for="imageUrl" class="form-label" style="color: #e791c6;">Photo URL</label>
           <input type="text" id="imageUrl" name="imageUrl" class="form-control"
                  [(ngModel)]="data.oldUser.imageUrl" />
         </div>
   
         <div class="col-md-6 mb-3">
-          <label for="roles" class="form-label">User Roles</label>
+          <label for="roles" class="form-label" style="color: #e791c6;">User Roles</label>
           <select class="form-select" id="roles" name="roles" [(ngModel)]="data.oldUser.roles" required>
             <option *ngFor="let r of userService.roles" [value]="r">{{ r }}</option>
           </select>
@@ -61,7 +72,11 @@
     </form>
   </mat-dialog-content>
   
-  <mat-dialog-actions class="dialog-footer justify-content-end" style="background-color: var(--secondary);">
-    <button mat-button color="warn" (click)="onCancel()">Cancel</button>
-    <button mat-button color="primary" (click)="onSave(editUserForm.value)">Save Changes</button>
+  <mat-dialog-actions class="dialog-footer justify-content-end px-3 py-2" style="background-color: #343a40; border-top: 1px solid #495057;">
+    <button mat-button class="btn btn-secondary me-2" style="background-color: #23272b; color: #e791c6;" (click)="onCancel()">
+      <i class="bx bx-x"></i> Cancel
+    </button>
+    <button mat-raised-button class="btn btn-secondary me-2" color="primary" style="background-color: #e791c6; color: #23272b;" (click)="onSave(editUserForm.value)">
+      <i class="bx bx-save"></i> Save Changes
+    </button>
   </mat-dialog-actions>

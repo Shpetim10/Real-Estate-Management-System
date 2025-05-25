@@ -34,12 +34,10 @@ export class DashboardComponent {
   ngOnInit(): void {
     this.authService.currentUser.subscribe(user => {
       this.currentUser = user;
+      this.getLoggedUser(); // Only call after currentUser is set
     });
     this.fetchProtectedResource();
     
-    this.getLoggedUser();
-    
-    this.getProperties();
     this.getUsers();
   }
 
@@ -64,24 +62,28 @@ export class DashboardComponent {
   
   getLoggedUser(){
     this.authService.getLoggedUser().subscribe({
-      next: (response)=> this.loggedUser=response,
+      next: (response)=> {
+        this.loggedUser=response;
+        this.getAllProperties(this.loggedUser); // Now currentUser is guaranteed to be set
+      },
       error: (err)=> console.log(err)
     })
   }
   
-  getProperties(){
-    if((this.currentUser?.roles ?? []).includes('ADMIN')){
+  getAllProperties(agent: User){
+    if(agent?.roles.includes('ADMIN')){
       this.propertyService.getAllProperties().subscribe({
         next: (response)=> {this.properties=response; console.log(response)},
         error: (error)=> console.log("Error fetching properties!")
       });
     }
     else{
-      this.propertyService.getAllPropertiesByAgent(this.currentUser?.username ?? '').subscribe({
+      this.propertyService.getAllPropertiesByAgent(agent?.username).subscribe({
         next: (response)=> this.properties=response,
         error: (err)=> console.log(err)
       });
     }
+    
   }
   
   getUsers(){
@@ -96,7 +98,7 @@ export class DashboardComponent {
   }
   
   getSoldProperties(): Property[]{
-    return this.properties.filter((prop)=>prop.status==='SOLD');
+    return this.properties.filter((prop)=>prop.status=='SOLD');
   }
   
   getAgents(): User[]{
@@ -108,7 +110,7 @@ export class DashboardComponent {
     
     this.properties.forEach((prop)=>{
       if(prop.status==='SOLD')
-        allProfit=allProfit+prop.price;
+        allProfit=allProfit+(Number(prop.price)||0);
     });
     
     return allProfit;
