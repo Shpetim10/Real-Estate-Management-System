@@ -12,7 +12,7 @@ export class ViewUserDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<ViewUserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { user: User }
-  ) {}
+  ) {} 
 
   onClose(): void {
     this.dialogRef.close();
